@@ -83,7 +83,15 @@ featboost = FeatBoostClassification(estimator=[xgboost_ensemble,\
         siso_order=4,\
         epsilon=1e-18,\
         verbose=2)
-x = featboost.fit(X, y)
+featboost.fit(X, y)
 print('FeatBoost accuracies: {}'.format(featboost.accuracy_))
 X_new = list(map(lambda x: np.take(x, featboost.selected_subset_), X))
 print('scores after featboost: {}'.format(cross_val_score(neigh, X_new, y)))
+
+
+### RFE
+from sklearn.feature_selection import RFE
+selector = RFE(xgboost_ensemble, features_to_select, verbose=1)
+selector = selector.fit(X, y)
+X_new = X[:, selector.support_]
+print('scores after RFE: {}'.format(cross_val_score(neigh, X_new, y)))

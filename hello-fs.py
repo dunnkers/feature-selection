@@ -21,16 +21,25 @@ y = data_pixraw10P['Y']
 y = np.ravel(y)
 y = le.fit_transform(y)
 pixraw10P = ft_dataset(X,y,"Pixraw10p",np.minimum(X.shape[1],100))
+
+# Colon Dataset
+# URL = http://featureselection.asu.edu/datasets.php
+data_colon = sio.loadmat('Datasets/Colon/colon.mat')
+X = data_colon['X']
+X = scale(X)
+y = data_colon['Y']
+y = np.ravel(y)
+y = le.fit_transform(y)
+colon = ft_dataset(X,y,"Colon",np.minimum(X.shape[1],100))
+
+
+## Select dataset.
+X = colon.input
+y = colon.output
+k = colon.subset_size
 print('dataset reading end')
 
 
-
-
-
-
-X = pixraw10P.input
-y = pixraw10P.output
-k = pixraw10P.subset_size
 print('dataset before FS: {}'.format(X.shape))
 ### CV ###
 from sklearn.neighbors import KNeighborsClassifier
@@ -53,16 +62,28 @@ print('scores after f_classif: {}'.format(cross_val_score(neigh, X_new, y)))
 # print('scores after mutual_info_classif: {}'.format(cross_val_score(neigh, X_new, y)))
 
 ### MultiSURF
-from skrebate import MultiSURF
-from sklearn.pipeline import make_pipeline
-clf = make_pipeline(MultiSURF(n_features_to_select=k), neigh)
-print('scores after MultiSURF: {}'.format(cross_val_score(clf, X, y)))
+# from skrebate import MultiSURF
+# from sklearn.pipeline import make_pipeline
+# clf = make_pipeline(MultiSURF(n_features_to_select=k), neigh)
+# print('scores after MultiSURF: {}'.format(cross_val_score(clf, X, y)))
 
-
-#$ dataset reading end
-#$ dataset before FS: (100, 10000)
-#$ scores before FS: [0.85 0.9  1.   1.   1.  ]
-#$ dataset after f_classif: (100, 100)
-#$ scores after f_classif: [0.9  0.95 0.95 1.   1.  ]
-#$ dataset after f_classif: (100, 100)
-#$ scores after f_classif: [0.95 1.   0.9  1.   1.  ]
+### FeatBoost
+from feat_boost import FeatBoostClassification
+from xgboost import XGBClassifier
+xgboost_ensemble = XGBClassifier(max_depth=3, learning_rate=0.1,\
+    n_estimators=200, silent=True, objective='binary:logistic',\
+    booster='gbtree', n_jobs=1, nthread=None, gamma=0, min_child_weight=1,\
+    max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1,\
+    reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5,\
+    random_state=0, seed=None, missing=None)
+featboost = FeatBoostClassification(estimator=[xgboost_ensemble,\
+    xgboost_ensemble, xgboost_ensemble], number_of_folds = 10,\
+        siso_ranking_size = 8,\
+        max_number_of_features = 100,\
+        siso_order=4,\
+        epsilon=1e-18,\
+        verbose=2)
+x = featboost.fit(X, y)
+print('FeatBoost accuracies: {}'.format(featboost.accuracy_))
+X_new = list(map(lambda x: np.take(x, featboost.selected_subset_), X))
+print('scores after featboost: {}'.format(cross_val_score(neigh, X_new, y)))

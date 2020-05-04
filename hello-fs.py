@@ -35,21 +35,28 @@ print('dataset before FS: {}'.format(X.shape))
 ### CV ###
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import cross_val_score
-neigh = KNeighborsClassifier(n_neighbors=3)
+neigh = KNeighborsClassifier(n_neighbors=1)
 print('scores before FS: {}'.format(cross_val_score(neigh, X, y)))
 
 ##### FEATURE SELECTION #####
-from sklearn.feature_selection import SelectKBest, f_classif, mutual_info_classif
+from sklearn.feature_selection import SelectKBest
+### ANOVA F-value
+from sklearn.feature_selection import f_classif
 X_new = SelectKBest(f_classif, k=k).fit_transform(X, y)
 print('dataset after f_classif: {}'.format(X_new.shape))
 print('scores after f_classif: {}'.format(cross_val_score(neigh, X_new, y)))
 
-X_new = SelectKBest(mutual_info_classif, k=k).fit_transform(X, y)
-print('dataset after mutual_info_classif: {}'.format(X_new.shape))
-print('scores after mutual_info_classif: {}'.format(cross_val_score(neigh, X_new, y)))
+### Mutual Info
+# from sklearn.feature_selection import mutual_info_classif
+# X_new = SelectKBest(mutual_info_classif, k=k).fit_transform(X, y)
+# print('dataset after mutual_info_classif: {}'.format(X_new.shape))
+# print('scores after mutual_info_classif: {}'.format(cross_val_score(neigh, X_new, y)))
 
-
-
+### MultiSURF
+from skrebate import MultiSURF
+from sklearn.pipeline import make_pipeline
+clf = make_pipeline(MultiSURF(n_features_to_select=k), neigh)
+print('scores after MultiSURF: {}'.format(cross_val_score(clf, X, y)))
 
 
 #$ dataset reading end

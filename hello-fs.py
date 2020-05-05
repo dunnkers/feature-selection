@@ -76,11 +76,12 @@ xgboost_ensemble = XGBClassifier(max_depth=3, learning_rate=0.1,\
     max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1,\
     reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5,\
     random_state=0, seed=None, missing=None)
+# siso;8,maxfeat=100,siso-order=4
 featboost = FeatBoostClassification(estimator=[xgboost_ensemble,\
     xgboost_ensemble, xgboost_ensemble], number_of_folds = 10,\
-        siso_ranking_size = 8,\
-        max_number_of_features = 100,\
-        siso_order=4,\
+        siso_ranking_size = 2,\
+        max_number_of_features = 2,\
+        siso_order=1,\
         epsilon=1e-18,\
         verbose=2)
 featboost.fit(X, y)
@@ -91,7 +92,10 @@ print('scores after featboost: {}'.format(cross_val_score(neigh, X_new, y)))
 
 ### RFE
 from sklearn.feature_selection import RFE
+features_to_select = np.size(featboost.selected_subset_)
+first_10_features = X[:,0:10]
 selector = RFE(xgboost_ensemble, features_to_select, verbose=1)
-selector = selector.fit(X, y)
-X_new = X[:, selector.support_]
+selector = selector.fit(first_10_features, y)
+X_new = first_10_features[:, selector.support_]
 print('scores after RFE: {}'.format(cross_val_score(neigh, X_new, y)))
+print('end')

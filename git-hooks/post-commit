@@ -4,4 +4,6 @@
 #
 # To enable this hook, create a symlink to .git/hooks/
 
+echo "post-commit started"
 rsync -aP --exclude-from='.gitignore' --exclude='.git' --exclude='.vscode' --exclude='.gitignore' . $PEREGRINE_USERNAME@peregrine.hpc.rug.nl:~/
+echo "post-commit finished"

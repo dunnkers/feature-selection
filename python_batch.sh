@@ -5,4 +5,5 @@
 #SBATCH --job-name=python_cpu
 #SBATCH --mem=8000
 module load Python/3.6.4-foss-2018a
-python python_cpu.py
+pip install --quiet --user xgboost
+python $1 $2

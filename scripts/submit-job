@@ -4,6 +4,5 @@
 #
 
 echo "submit-job started"
-ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl 'sbatch python_batch.sh'
-# rsync -aP --include='slurm-*.out' --exclude='*' $PEREGRINE_USERNAME@peregrine.hpc.rug.nl:~/ ./logs/
+ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl "sbatch python_batch.sh ${1} ${2}"
 echo "submit-job finished"

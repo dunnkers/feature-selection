@@ -26,7 +26,7 @@ to your `~/.gitconfig` file. Do restart your terminal after setting the env vari
 (optional) 3. Symlink the provided git hook, to automatically transfer this directory upon any git commits. Run:
 ```shell
 cd .git/hooks
-ln -s -f ../../scripts/upload-files ./post-commit
+ln -s -f ../../scripts/upload-files.sh ./post-commit
 ```
 We first cd into hooks directory, because [symlinks are relative](https://stackoverflow.com/questions/4592838/symbolic-link-to-a-hook-in-git).
 
@@ -37,12 +37,17 @@ Now, your files will be automatically copied over to Peregrine on every git comm
 ## Running tests
 1. Transfer files
 ```shell
-sh scripts/post-commit
+./scripts/upload-files.sh
 ```
 
 2. Run job
 ```shell
-sh scripts/submit-job
+./scripts/submit-job.sh ./fs-methods/rfe.py ./data/3Class_Datasets_Loc_2/3Class_Datasets_Loc_2_01.txt.gz
+```
+
+3. Download logs
+```shell
+./scripts/download-logs.sh
 ```
 
 ## About

@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Logs into Peregrine and executes a job.
+#
+
+echo "submit-job started"
+ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl 'sbatch python_batch.sh'
+# rsync -aP --include='slurm-*.out' --exclude='*' $PEREGRINE_USERNAME@peregrine.hpc.rug.nl:~/ ./logs/
+echo "submit-job finished"

@@ -1,7 +1,7 @@
 # feature-selection
 By Jeroen Overschie.
 
-### Architectual testing setup
+## Setup
 To run on the Peregrine HPC environment (University of Groningen), the following setup can be used.
 
 1. Create an environment variable `PEREGRINE_USERNAME` with your peregrine username login credentials.
@@ -23,17 +23,27 @@ to your `~/.gitconfig` file. Do restart your terminal after setting the env vari
 
 2. Upload your public ssh key to Peregrine to avoid password prompts. e.g. see [this link](https://superuser.com/questions/8077/how-do-i-set-up-ssh-so-i-dont-have-to-type-my-password) for a guide.
 
-3. Symlink the provided git hook, to automatically transfer this directory upon any git commits. Run:
+(optional) 3. Symlink the provided git hook, to automatically transfer this directory upon any git commits. Run:
 ```shell
 cd .git/hooks
 ln -s -f ../../scripts/post-commit .
 ```
-
 We first cd into hooks directory, because [symlinks are relative](https://stackoverflow.com/questions/4592838/symbolic-link-to-a-hook-in-git).
-
-4. Done ✨
 
 Now, your files will be automatically copied over to Peregrine on every git commit. 💎
 
-### About
-Research Internship 2020.
+4. Done ✨
+
+## Running tests
+1. Transfer files
+```shell
+sh scripts/post-commit
+```
+
+2. Run job
+```shell
+sh scripts/submit-job
+```
+
+## About
+MSc Research Internship 2020.

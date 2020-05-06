@@ -5,6 +5,7 @@ import os # For reading the number of CPUs requested.
 import time # For clocking the calculation. 
  
 def double(data):
+    print('happens on some worker... data={}'.format(data))
     return data * 2
  
 if __name__ == '__main__':

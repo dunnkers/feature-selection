@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --time=00:10:00
-#SBATCH --nodes=3
+#SBATCH --nodes=1
 #SBATCH --ntasks=10
 #SBATCH --job-name=python_cpu
 #SBATCH --mem=8000

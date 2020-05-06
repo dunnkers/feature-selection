@@ -26,7 +26,7 @@ to your `~/.gitconfig` file. Do restart your terminal after setting the env vari
 3. Symlink the provided git hook, to automatically transfer this directory upon any git commits. Run:
 ```shell
 cd .git/hooks
-ln -s -f ../../git-hooks/* .
+ln -s -f ../../scripts/post-commit .
 ```
 
 We first cd into hooks directory, because [symlinks are relative](https://stackoverflow.com/questions/4592838/symbolic-link-to-a-hook-in-git).

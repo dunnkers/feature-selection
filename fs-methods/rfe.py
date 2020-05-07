@@ -1,5 +1,4 @@
 from sklearn.feature_selection import RFE
-from sklearn.metrics import r2_score
 import pandas as pd
 import sys
 import time
@@ -20,32 +19,22 @@ xgboost_ensemble = XGBClassifier(max_depth=3, learning_rate=0.1,\
     max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1,\
     reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5,\
     random_state=0, seed=None, missing=None)
-
+# Setup FS method
 fs = RFE(estimator=xgboost_ensemble, n_features_to_select=1, verbose=1)
-
 print(filename)
 print('RFE_XGBoost')
 
+# Run Feature Selection
 start = time.time()
-
-r2_scorer = lambda est, curr_features: print(\
-    'est={},curr_features={}'.format(est, curr_features)\
-    )
-fs._fit(features, labels, r2_scorer)
-# fs.fit(features, labels)
-
+fs.fit(features, labels)
 elapsed = time.time() - start
 print('Completed scoring in {} seconds.'.format(elapsed))
 
-
+# Write results to CSV
 output = pd.DataFrame(data={'FeatureName': test_data.drop(\
                                             'Class', axis=1).columns.values,
                             'FeatureRank': fs.ranking_,
                             'Time': elapsed})
-# output = pd.Dataframe({})
 output.to_csv('results/RFE_XGBoost,{}.csv'.format(os.path.basename(filename)),\
     index=False)
 print(output)
-
-# for i, row in feature_importances.sort_values('FeatureImportance', ascending=True).iterrows():
-#     print('{}\t{}'.format(row['FeatureName'], row['FeatureImportance']))

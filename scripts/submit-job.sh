@@ -4,5 +4,5 @@
 #
 
 echo "submit-job started"
-ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl "sbatch python_batch.sh ${1} ${2}"
+ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl "sbatch ${1}"
 echo "submit-job finished"

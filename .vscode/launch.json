@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Python: Current File",
             "type": "python",
@@ -32,13 +33,23 @@
             ]
         },
         {
-            "name": "<jobs>: RFE_XGBoost,3Class_[...]_01",
+            "name": "<jobs>: RFE_XGBoost,3Class_[...]",
             "type": "python",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
             "args": [
                 "${workspaceFolder}/data/3Class_Datasets_Loc_2"
+            ]
+        },
+        {
+            "name": "<jobs>: RFE_XGBoost,GAMETES_2.2_[...]",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/GAMETES_2.2_dev_peter_2wayEpi_NA_Datasets_Loc_2_Qnt_2_Pop_100000/a_20/s_1600/her_0.4__maf_0.2/NA_0.001/a_20s_1600her_0.4__maf_0.2_EDM-2"
             ]
         }
     ]

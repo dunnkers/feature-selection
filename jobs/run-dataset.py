@@ -24,7 +24,7 @@ def get_datasets(dataset_dir):
 def get_poolSize():
     key = 'SLURM_JOB_CPUS_PER_NODE' # Requested CPUs.
     local = multiprocessing.cpu_count() # Local available CPU's
-    return int(os.environ(key) if os.environ.get(key) is not None else local)
+    return int(os.environ[key] if os.environ.get(key) is not None else local)
 
 if __name__ == '__main__':
     begin = time.time()
@@ -43,6 +43,9 @@ if __name__ == '__main__':
     elapsedTime = time.time() - begin
     print('Time elapsed for ' , poolSize, ' workers: ', elapsedTime, ' seconds')
 
-    # output path - uses same directory structure as original /data folder
-    outpath = os.path.relpath(dataset_dir, os.path.join(os.getcwd(), 'data'))
-    results.to_csv('results/{}.csv'.format(outpath), index=False)
+    # write to csv (using same directory structure as original /data folder)
+    dataset_path = os.path.relpath(dataset_dir, os.path.join(os.getcwd(), 'data'))
+    outpath = os.path.join('results', dataset_path)
+    if not os.path.exists(os.path.dirname(outpath)):
+        os.makedirs(os.path.dirname(outpath))
+    results.to_csv('{}.csv'.format(outpath), index=False)

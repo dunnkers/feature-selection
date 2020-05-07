@@ -1,30 +1,11 @@
 #!/usr/bin/env python
  
 import multiprocessing 
-import os # For reading the number of CPUs requested. 
 import time # For clocking the calculation. 
 import sys
 import pandas as pd
 from RFE import runRFE
-
-def get_datasets(dataset_dir):
-    dataset_files = []
-    for dirpath, _, filenames in os.walk('{}'.format(dataset_dir)):
-        # In some directories, there are report files. Skip these files.
-        if len(filenames) < 10 and len(dirpath) > 0:
-            continue
-
-        for filename in filenames:
-            if not filename.endswith('.txt.gz'):
-                continue
-            dataset_file = os.path.join(dirpath, filename)
-            dataset_files.append(dataset_file)
-    return dataset_files
-
-def get_poolSize():
-    key = 'SLURM_JOB_CPUS_PER_NODE' # Requested CPUs.
-    local = multiprocessing.cpu_count() # Local available CPU's
-    return int(os.environ[key] if os.environ.get(key) is not None else local)
+from util import get_datasets, get_poolSize, get_outpath
 
 if __name__ == '__main__':
     begin = time.time()
@@ -43,9 +24,6 @@ if __name__ == '__main__':
     elapsedTime = time.time() - begin
     print('Time elapsed for ' , poolSize, ' workers: ', elapsedTime, ' seconds')
 
-    # write to csv (using same directory structure as original /data folder)
-    dataset_path = os.path.relpath(dataset_dir, os.path.join(os.getcwd(), 'data'))
-    outpath = os.path.join('results', dataset_path)
-    if not os.path.exists(os.path.dirname(outpath)):
-        os.makedirs(os.path.dirname(outpath))
+    # write to csv
+    outpath = get_outpath(dataset_dir, 'results_rankings')
     results.to_csv('{}.csv'.format(outpath), index=False)

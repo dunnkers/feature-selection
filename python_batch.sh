@@ -3,7 +3,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=10
 #SBATCH --job-name=python_cpu
-#SBATCH --mem=8000
+#SBATCH --mem=1000
+#SBATCH --output=logs/slurm-%j.out
 module load Python/3.6.4-foss-2018a
 pip install --quiet --user xgboost
 python $1 $2

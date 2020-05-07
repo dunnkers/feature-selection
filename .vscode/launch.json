@@ -30,6 +30,16 @@
             "args": [
                 "${workspaceFolder}/results/RFE_XGBoost,3Class_Datasets_Loc_2_01.txt.gz.csv"
             ]
+        },
+        {
+            "name": "<jobs>: RFE_XGBoost,3Class_[...]_01",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/3Class_Datasets_Loc_2"
+            ]
         }
     ]
 }

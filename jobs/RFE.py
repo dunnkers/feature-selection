@@ -3,7 +3,6 @@ import pandas as pd
 import time
 import os
 from xgboost import XGBClassifier
-from util import getDatasetNo
 
 def runRFE(filename):
     # Load data
@@ -31,9 +30,9 @@ def runRFE(filename):
     print('Completed scoring in {} seconds.'.format(elapsed))
 
     # Write results to CSV
-    output = pd.DataFrame(data={'FeatureName': test_data.drop(\
-                                                'Class', axis=1).columns.values})
-    dataset_n = getDatasetNo(filename)
-    output['FeatureRank_{}'.format(dataset_n)] = fs.ranking_
-    output['Time_{}'.format(dataset_n)] = elapsed
+    feature_names = test_data.drop('Class', axis=1).columns.values
+    output = pd.DataFrame(index=feature_names, data={\
+        'FeatureRank': fs.ranking_,\
+        'Time': elapsed\
+    })
     return output

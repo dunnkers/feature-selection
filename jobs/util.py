@@ -2,9 +2,6 @@ import os
 from multiprocessing import cpu_count
 from os import path, walk, environ, getcwd, makedirs
 
-def getDatasetNo(filename):
-    return filename.split('_')[-1:][0].split('.')[0]
-
 def get_datasets(dataset_dir):
     dataset_files = []
     for dirpath, _, filenames in walk('{}'.format(dataset_dir)):

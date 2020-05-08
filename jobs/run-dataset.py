@@ -10,23 +10,23 @@ from util import get_datasets, get_poolSize, get_outpath
 if __name__ == '__main__':
     begin = time.time()
     dataset_dir = sys.argv[1]
-    inputs = get_datasets(dataset_dir)
+    inputs = sorted(get_datasets(dataset_dir)) # sort datasets by filename
     poolSize = get_poolSize()
 
     # start pool
     pool = multiprocessing.Pool(processes=poolSize,)
-    poolResults = pool.map(runRFE, [inputs[0],inputs[1],inputs[2]]) # Do the calculation.
+    poolResults = pool.map(runRFE, [inputs[0],inputs[1],inputs[2]])
 
     # collect results
-    pool.close() # Stop pool accordingly.
-    pool.join()  # Wrap up data from the workers in the pool.
+    pool.close() # Stop pool
+    pool.join()  # Wrap up data from workers
     elapsedTime = time.time() - begin
     print('Time elapsed for ' , poolSize, ' workers: ', elapsedTime, ' seconds')
 
     # concatenate results. remove duplicate columns
-    poolResults = map(lambda df: df.drop('FeatureName', axis=1), poolResults)
-    results = pd.concat(poolResults, axis=1)
+    results_keys = range(1, len(poolResults)+1) # numbering according to filename
+    results = pd.concat(poolResults, axis=1, keys=results_keys)
 
     # write to csv
     outpath = get_outpath(dataset_dir, 'ranking')
-    results.to_csv('{}.csv'.format(outpath), index=False)
+    results.to_csv('{}.csv'.format(outpath))

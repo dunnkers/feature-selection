@@ -7,10 +7,10 @@ from sklearn.neighbors import KNeighborsClassifier
 from util import get_outpath
 from sklearn.model_selection import cross_val_score
 
-def runKNN(enumerated):
+def run_validation(enumerated):
     key, filename = enumerated
     dataset_dir = os.path.dirname(filename)
-    print('Validating set #{} from {}', key, dataset_dir)
+    print('Validating set #{} from {}'.format(key, dataset_dir))
 
     # Load data
     test_data = pd.read_csv(filename, sep='\t')
@@ -42,5 +42,5 @@ def runKNN(enumerated):
                 acc_column = 'Accuracy_{}_{}'.format(clfname, i + 1) # fold number
                 current_column.loc[index, acc_column] = acc
 
-    print('Set #{} validated using {} estimator(s).', key, len(clfs))
+    print('Set #{} validated using {} estimator(s).'.format(key, len(clfs)))
     return current_column

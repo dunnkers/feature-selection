@@ -1,32 +1,7 @@
 #!/usr/bin/env python
- 
-import multiprocessing 
-import time # For clocking the calculation. 
-import sys
-import pandas as pd
-from RFE import runRFE
-from util import get_datasets, get_poolSize, get_outpath
+from ComputePool import run_pool
+from RFE import run_RFE
 
 if __name__ == '__main__':
-    begin = time.time()
-    dataset_dir = sys.argv[1]
-    inputs = sorted(get_datasets(dataset_dir)) # sort datasets by filename
-    poolSize = get_poolSize()
-
-    # start pool
-    pool = multiprocessing.Pool(processes=poolSize,)
-    poolResults = pool.map(runRFE, [inputs[0],inputs[1],inputs[2]])
-
-    # collect results
-    pool.close() # Stop pool
-    pool.join()  # Wrap up data from workers
-    elapsedTime = time.time() - begin
-    print('Time elapsed for ' , poolSize, ' workers: ', elapsedTime, ' seconds')
-
-    # concatenate results. remove duplicate columns
-    results_keys = range(1, len(poolResults)+1) # numbering according to filename
-    results = pd.concat(poolResults, axis=1, keys=results_keys)
-
-    # write to csv
-    outpath = get_outpath(dataset_dir, 'ranking')
-    results.to_csv('{}.csv'.format(outpath))
+    print('Starting feature selection ranking pool.')
+    run_pool(run_RFE, 'ranking')

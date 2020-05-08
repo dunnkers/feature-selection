@@ -14,7 +14,6 @@ def run_pool(func, outfolder):
 
     # start pool
     pool = multiprocessing.Pool(processes=poolSize,)
-    inputs = [inputs[0],inputs[1],inputs[2]]
     poolResults = pool.map(func, enumerate(inputs, start=1))
 
     # collect results

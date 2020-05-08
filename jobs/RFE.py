@@ -4,7 +4,8 @@ import time
 import os
 from xgboost import XGBClassifier
 
-def runRFE(filename):
+def run_RFE(enumerated):
+    _, filename = enumerated
     # Load data
     test_data = pd.read_csv(filename, sep='\t')
     # Separate features/target

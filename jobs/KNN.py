@@ -40,5 +40,6 @@ def runKNN(filename):
             acc_column = '{}_{}'.format(acc_columns, i + 1) # attach fold number
             results_data.loc[index, acc_column] = acc
 
-    outpath = get_outpath(dataset_dir, 'validation')
-    results_data.to_csv('{}.csv'.format(outpath), index=False)
+    return results_data
+    # outpath = get_outpath(dataset_dir, 'validation')
+    # results_data.to_csv('{}.csv'.format(outpath), index=False)

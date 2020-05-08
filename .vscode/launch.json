@@ -22,16 +22,6 @@
             ]
         },
         {
-            "name": "<validation>: RFE_XGBoost,3Class_[...]",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "args": [
-                "${workspaceFolder}/data/3Class_Datasets_Loc_2"
-            ]
-        },
-        {
             "name": "<jobs>: RFE_XGBoost,3Class_[...]",
             "type": "python",
             "request": "launch",

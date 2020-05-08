@@ -44,10 +44,10 @@ def run_FeatBoost(enumerated):
 
     # Convert FeatBoost subset to ranking
     selected_features = np.unique(fs.selected_subset_) # FeatBoost duplicates bug
-    ranking = np.zeros(len(feature_names), dtype='int')
+    ranking = list(map(lambda f: np.nan, feature_names)) # NaN values
     for rank, selected_feature in enumerate(selected_features, start=1):
         ranking[selected_feature] = rank
-        
+
     # Write results to CSV
     output = pd.DataFrame(index=feature_names, data={\
         'FeatureRank': ranking,\

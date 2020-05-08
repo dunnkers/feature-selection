@@ -19,7 +19,7 @@ def run_validation(enumerated):
     inpath = '{}.csv'.format(get_outpath(dataset_dir, 'ranking'))
     results_data = pd.read_csv(inpath, header=[0,1], index_col=0)
     current_column = results_data[str(key)].copy()
-    ranking = current_column.sort_values('FeatureRank').index
+    ranking = current_column.dropna().sort_values('FeatureRank').index
     # -> e.g. ['feature_name', 'another_feature', ...] in order of feature rank
 
     # Construct subsets

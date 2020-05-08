@@ -36,16 +36,17 @@ def runKNN(filename):
         index=False)
     return results_data
 
-from RFE import runRFE
 if __name__ == '__main__':
     begin = time.time()
+    # split up in data_dir -> results_dir?
     dataset_dir = sys.argv[1]
+
     inputs = get_datasets(dataset_dir)
     poolSize = get_poolSize()
 
     # start pool
     pool = multiprocessing.Pool(processes=poolSize,)
-    poolResults = pool.map(runRFE, inputs) # Do the calculation.
+    poolResults = pool.map(lambda input: print(input), inputs) # Do the calculation.
 
     # collect results
     pool.close() # Stop pool accordingly.

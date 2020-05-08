@@ -25,5 +25,5 @@ if __name__ == '__main__':
     print('Time elapsed for ' , poolSize, ' workers: ', elapsedTime, ' seconds')
 
     # write to csv
-    outpath = get_outpath(dataset_dir, 'results_rankings')
+    outpath = get_outpath(dataset_dir, 'rankings')
     results.to_csv('{}.csv'.format(outpath), index=False)

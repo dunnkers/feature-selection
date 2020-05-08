@@ -22,7 +22,7 @@ def get_datasets(dataset_dir):
 def get_outpath(dataset_dir, out_dir):
     # using same directory structure as original /data folder
     dataset_path = path.relpath(dataset_dir, path.join(getcwd(), 'data'))
-    outpath = path.join(out_dir, dataset_path)
+    outpath = path.join('results', out_dir, dataset_path)
     if not path.isdir(path.dirname(outpath)):
         makedirs(path.dirname(outpath))
     return outpath

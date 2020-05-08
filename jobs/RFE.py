@@ -5,8 +5,8 @@ import os
 from xgboost import XGBClassifier
 from util import getDatasetNo
 
-# Load data
 def runRFE(filename):
+    # Load data
     test_data = pd.read_csv(filename, sep='\t')
     # Separate features/target
     features = test_data.drop('Class', axis=1).values

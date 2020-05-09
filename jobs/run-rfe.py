@@ -1,18 +1,10 @@
 #!/usr/bin/env python
-from ComputePool import run_pool
+from ComputePool import run_ranking_pool
 from sklearn.feature_selection import RFE
-import pandas as pd
-import time
-import os
 from xgboost import XGBClassifier
 
-def run_RFE(enumerated):
-    _, filename = enumerated
-    # Load data
-    test_data = pd.read_csv(filename, sep='\t')
-    # Separate features/target
-    features = test_data.drop('Class', axis=1).values
-    labels = test_data['Class'].values
+def run_RFE(X, y):
+    print('RFE_XGBoost')
 
     # Setup estimator
     xgboost_ensemble = XGBClassifier(max_depth=3, learning_rate=0.1,\
@@ -23,23 +15,12 @@ def run_RFE(enumerated):
         random_state=0, seed=None, missing=None)
     # Setup FS method
     fs = RFE(estimator=xgboost_ensemble, n_features_to_select=1, verbose=1)
-    print(filename)
-    print('RFE_XGBoost')
 
     # Run Feature Selection
-    start = time.time()
-    fs.fit(features, labels)
-    elapsed = time.time() - start
-    print('Completed scoring in {} seconds.'.format(elapsed))
+    fs.fit(X, y)
 
-    # Write results to CSV
-    feature_names = test_data.drop('Class', axis=1).columns.values
-    output = pd.DataFrame(index=feature_names, data={\
-        'FeatureRank': fs.ranking_,\
-        'Time': elapsed\
-    })
-    return output
+    return fs.ranking_
 
 if __name__ == '__main__':
     print('Starting RFE feature selection ranking pool.')
-    run_pool(run_RFE, 'ranking')
+    run_ranking_pool(run_RFE)

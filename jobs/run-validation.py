@@ -9,8 +9,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from util import get_outpath
 from sklearn.model_selection import cross_val_score
 
-def run_validation(enumerated):
-    key, filename = enumerated
+def run_validation(key, filename):
     dataset_dir = os.path.dirname(filename)
     print('Validating set #{} from {}'.format(key, dataset_dir))
 

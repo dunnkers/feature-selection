@@ -1,20 +1,11 @@
 #!/usr/bin/env python
-from sklearn.feature_selection import RFE
-import pandas as pd
 import numpy as np
-import time
-import os
 from lib.feat_boost import FeatBoostClassification
 from xgboost import XGBClassifier
-from ComputePool import run_pool
+from ComputePool import run_ranking_pool
 
-def run_FeatBoost(enumerated):
-    _, filename = enumerated
-    # Load data
-    test_data = pd.read_csv(filename, sep='\t')
-    # Separate features/target
-    features = test_data.drop('Class', axis=1).values
-    labels = test_data['Class'].values
+def run_FeatBoost(X, y):
+    print('FeatBoost_XGBoost')
 
     # Setup estimator
     xgboost_ensemble = XGBClassifier(max_depth=3, learning_rate=0.1,\
@@ -31,31 +22,19 @@ def run_FeatBoost(enumerated):
             siso_order=4,\
             epsilon=1e-18,\
             verbose=2)
-    print(filename)
-    print('FeatBoost_XGBoost')
 
     # Run Feature Selection
-    start = time.time()
-    fs.fit(features, labels)
-    elapsed = time.time() - start
-    print('Completed scoring in {} seconds.'.format(elapsed))
-
-    # feature names
-    feature_names = test_data.drop('Class', axis=1).columns.values
+    fs.fit(X, y)
 
     # Convert FeatBoost subset to ranking
     selected_features = np.unique(fs.selected_subset_) # FeatBoost duplicates bug
-    ranking = list(map(lambda f: np.nan, feature_names)) # NaN values
+    ranking = np.full(np.size(X, axis=1), np.nan) # empty array with NaN's
     for rank, selected_feature in enumerate(selected_features, start=1):
         ranking[selected_feature] = rank
-
-    # Write results to CSV
-    output = pd.DataFrame(index=feature_names, data={\
-        'FeatureRank': ranking,\
-        'Time': elapsed\
-    })
-    return output
+    
+    return ranking
 
 if __name__ == '__main__':
     print('Starting FeatBoost feature selection ranking pool.')
-    run_pool(run_FeatBoost, 'ranking')
+    # run_pool(run_FeatBoost, 'ranking')
+    run_ranking_pool(run_FeatBoost)

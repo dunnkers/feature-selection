@@ -3,9 +3,7 @@ from ComputePool import run_ranking_pool
 from sklearn.feature_selection import RFE
 from xgboost import XGBClassifier
 
-def run_RFE(X, y):
-    print('RFE_XGBoost')
-
+def RFE_XGBoost(X, y):
     # Setup estimator
     xgboost_ensemble = XGBClassifier(max_depth=3, learning_rate=0.1,\
         n_estimators=200, silent=True, objective='binary:logistic',\
@@ -23,4 +21,4 @@ def run_RFE(X, y):
 
 if __name__ == '__main__':
     print('Starting RFE feature selection ranking pool.')
-    run_ranking_pool(run_RFE)
+    run_ranking_pool(RFE_XGBoost)

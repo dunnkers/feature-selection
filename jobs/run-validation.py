@@ -45,6 +45,9 @@ def run_validation(key, filename):
 
     print('Set #{} validated using {} estimator(s).'.format(key, len(clfs)))
     return current_column
+    
+# def run_val(ranking):
+#     return <pandas dataframe with test result rows>
 
 if __name__ == '__main__':
     print('Starting validation pool.')

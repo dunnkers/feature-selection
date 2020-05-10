@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from ComputePool import run_pool
+from ComputePool import run_pool, run_validation_pool
 from sklearn.feature_selection import RFE
 import pandas as pd
 import numpy as np
@@ -36,7 +36,7 @@ def run_validation(key, filename):
         for index, subset in subsets:
             X = test_data[subset].values # pandas multi-column select
             y = test_data['Class'].values
-            scores = cross_val_score(estimator, X, y)
+            scores = cross_val_score(estimator, X, y, cv=5)
 
             # store accuracy scores in dataframe; storing ALL folds
             for i, acc in enumerate(scores):
@@ -45,10 +45,17 @@ def run_validation(key, filename):
 
     print('Set #{} validated using {} estimator(s).'.format(key, len(clfs)))
     return current_column
-    
-# def run_val(ranking):
-#     return <pandas dataframe with test result rows>
+
+def KNN_5Fold(X, y):
+    estimator = KNeighborsClassifier(n_neighbors=1)
+    scores = cross_val_score(estimator, X, y, cv=5)
+    output = pd.DataFrame(data={
+        'fold_no': range(1, len(scores) + 1),
+        'score': scores
+    })
+    return output
 
 if __name__ == '__main__':
     print('Starting validation pool.')
-    run_pool(run_validation, 'validation')
+    # run_pool(run_validation, 'validation')
+    run_validation_pool(KNN_5Fold)

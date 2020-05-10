@@ -12,27 +12,7 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "<fs-method>: 3Class_[...]_01",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "args": [
-                "${workspaceFolder}/data/3Class_Datasets_Loc_2/3Class_Datasets_Loc_2_01.txt.gz"
-            ]
-        },
-        {
-            "name": "<jobs>: RFE_XGBoost,3Class_[...]",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "args": [
-                "${workspaceFolder}/data/3Class_Datasets_Loc_2"
-            ]
-        },
-        {
-            "name": "run-rfe: RFE_XGBoost,3Class_[...]",
+            "name": "run-rfe: 3Class_[...]",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/jobs/run-rfe.py",
@@ -42,7 +22,27 @@
             ]
         },
         {
-            "name": "<jobs>: RFE_XGBoost,GAMETES_2.2_[...]",
+            "name": "run-validation: 3Class_[...]",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/jobs/run-validation.py",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/3Class_Datasets_Loc_2"
+            ]
+        },
+        {
+            "name": "<jobs>: 3Class_[...]",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/3Class_Datasets_Loc_2"
+            ]
+        },
+        {
+            "name": "<jobs>: GAMETES_2.2_[...]",
             "type": "python",
             "request": "launch",
             "program": "${file}",

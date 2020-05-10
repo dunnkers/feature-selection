@@ -20,5 +20,4 @@ def RFE_XGBoost(X, y):
     return fs.ranking_
 
 if __name__ == '__main__':
-    print('Starting RFE feature selection ranking pool.')
     run_ranking_pool(RFE_XGBoost)

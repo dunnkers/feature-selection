@@ -4,9 +4,7 @@ from lib.feat_boost import FeatBoostClassification
 from xgboost import XGBClassifier
 from ComputePool import run_ranking_pool
 
-def run_FeatBoost(X, y):
-    print('FeatBoost_XGBoost')
-
+def FeatBoost_XGBoost(X, y):
     # Setup estimator
     xgboost_ensemble = XGBClassifier(max_depth=3, learning_rate=0.1,\
         n_estimators=200, silent=True, objective='binary:logistic',\
@@ -35,6 +33,4 @@ def run_FeatBoost(X, y):
     return ranking
 
 if __name__ == '__main__':
-    print('Starting FeatBoost feature selection ranking pool.')
-    # run_pool(run_FeatBoost, 'ranking')
-    run_ranking_pool(run_FeatBoost)
+    run_ranking_pool(FeatBoost_XGBoost)

@@ -25,6 +25,8 @@ def ranking_pool(dataset_no, filename, ranking_func, ranking_method):
 
     # Write results to CSV
     feature_names = dataset.drop('Class', axis=1).columns.values
+    ranking = pd.Series(ranking).dropna() # don't store unranked features
+    feature_names = np.take(feature_names, ranking.index) # filter accordingly
     output = pd.DataFrame(data={
         'feature_name': feature_names,
         'feature_rank': ranking,
@@ -36,7 +38,7 @@ def ranking_pool(dataset_no, filename, ranking_func, ranking_method):
 
 def run_ranking_pool(ranking_func, ranking_method=None):
     ranking_method = ranking_method or ranking_func.__name__
-    print('Running {} ranking pool...'.format(ranking_method))
+    print('Ranking pool [{}]'.format(ranking_method))
     run_pool(ranking_pool, 'ranking', ranking_func, ranking_method)
 
 def validation_pool(dataset_no, filename, validation_func, validation_method):
@@ -47,17 +49,17 @@ def validation_pool(dataset_no, filename, validation_func, validation_method):
     inpath = '{}.csv'.format(get_outpath(dataset_dir, 'ranking'))
     results_data = pd.read_csv(inpath)
     current = results_data.loc[results_data['dataset_no'] == int(dataset_no)]
-    # ranking = current['feature_rank'].dropna().sort_values().index
+    # !!! TODO: FILTER BY ranking_method
     ranking = current.sort_values('feature_rank')['feature_name']\
         .dropna().values
     # -> e.g. ['feature_name', 'another_feature', ...] in order of feature rank
 
     # Construct subsets
-    subsets = map(lambda i: (ranking[i], ranking[0:i+1]), range(len(ranking)))
+    subsets = map(lambda i: ranking[0:i + 1], range(len(ranking)))
     # -> e.g. [[<best ranked feature>], [<top 2 ranked features>], ... etc]
 
     results = pd.DataFrame()
-    for index, subset in subsets:
+    for subset in subsets:
         X_subset = dataset[subset].values
 
         # run validation
@@ -66,7 +68,7 @@ def validation_pool(dataset_no, filename, validation_func, validation_method):
         time_elapsed = time.time() - start
 
         # store results
-        scores['feature_name'] = index
+        scores['n_features'] = len(subset)
         scores['dataset_no'] = dataset_no
         scores['time_elapsed'] = time_elapsed
         scores['validation_method'] = validation_method
@@ -76,7 +78,7 @@ def validation_pool(dataset_no, filename, validation_func, validation_method):
 
 def run_validation_pool(validation_func, validation_method=None):
     validation_method = validation_method or validation_func.__name__
-    print('Running {} validation pool...'.format(validation_method))
+    print('Validation pool [{}]'.format(validation_method))
     run_pool(validation_pool, 'validation', validation_func, validation_method)
 
 def run_pool(func, outfolder, *map_args):
@@ -85,7 +87,6 @@ def run_pool(func, outfolder, *map_args):
     poolSize = get_poolSize()
 
     # configure pool
-    inputs = [inputs[0], inputs[1]]
     pool = multiprocessing.Pool(processes=poolSize,)
     pool_args = map(lambda x: np.append(x, map_args),\
         enumerate(inputs, start=1)) # construct tuple as input parameters

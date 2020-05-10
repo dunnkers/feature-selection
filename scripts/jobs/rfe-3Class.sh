@@ -8,5 +8,5 @@
 #SBATCH --partition=short
 module load Python/3.6.4-foss-2018a
 pip install --quiet --user xgboost
-python jobs/run-dataset.py data/3Class_Datasets_Loc_2
+python jobs/run-rfe.py data/3Class_Datasets_Loc_2
 python jobs/run-validation.py data/3Class_Datasets_Loc_2

@@ -11,7 +11,6 @@ for i in `find ./data -type d `; do
         if [ $j -eq  30 ]; then
             echo "Submitting job for dataset: $i";
             ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl "sbatch --job-name=${i} --export=dataset=$i scripts/jobs/any-job.sh"
-            exit
         fi;
     fi;
 done

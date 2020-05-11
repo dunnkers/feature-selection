@@ -14,3 +14,7 @@ for i in `find ./data -type d `; do
         fi;
     fi;
 done
+
+### TODO: save info about 'failed submissions', e.g. when return message is not
+# 'Submitted batch job [...]'. Then save all failed datasets for later, in a 
+# .txt file. There also seems to be a 'max submission' rate; 19 max per +- min

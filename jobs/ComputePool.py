@@ -28,9 +28,10 @@ def ranking_pool(dataset_no, filename, ranking_func, ranking_method):
     ranking = pd.Series(ranking).dropna() # don't store unranked features
     feature_names = np.take(feature_names, ranking.index) # filter accordingly
     output = pd.DataFrame(data={
+        'result_type': 'ranking',
         'feature_name': feature_names,
         'feature_rank': ranking,
-        'time_elapsed': time_elapsed,
+        'cpu_time': time_elapsed,
         'dataset_no': dataset_no,
         'ranking_method': ranking_method
     })
@@ -47,33 +48,34 @@ def validation_pool(dataset_no, filename, validation_func, validation_method):
     # Load feature ranking
     dataset_dir = os.path.dirname(filename)
     inpath = '{}.csv'.format(get_outpath(dataset_dir, 'ranking'))
-    results_data = pd.read_csv(inpath)
-    current = results_data.loc[results_data['dataset_no'] == int(dataset_no)]
-    # !!! TODO: FILTER BY ranking_method
-    ranking = current.sort_values('feature_rank')['feature_name']\
-        .dropna().values
-    # -> e.g. ['feature_name', 'another_feature', ...] in order of feature rank
+    all_data = pd.read_csv(inpath)
+    data = all_data.loc[all_data['dataset_no'] == int(dataset_no)]
 
-    # Construct subsets
-    subsets = map(lambda i: ranking[0:i + 1], range(len(ranking)))
-    # -> e.g. [[<best ranked feature>], [<top 2 ranked features>], ... etc]
-
+    # Split by each ranking method
     results = pd.DataFrame()
-    for subset in subsets:
-        X_subset = dataset[subset].values
+    for ranking_method, ranking_data in data.groupby('ranking_method'):
+        ranking = ranking_data.sort_values('feature_rank')['feature_name']\
+            .dropna().values
+        
+        # Loop all result rows
+        for _, item in ranking_data.iterrows():
+            subset = ranking[:int(item.feature_rank)] # all up till this feature
+            X_subset = dataset[subset].values
 
-        # run validation
-        start = time.time()
-        scores = validation_func(X_subset, y)
-        time_elapsed = time.time() - start
+            # run validation
+            start = time.time()
+            scores = validation_func(X_subset, y)
+            time_elapsed = time.time() - start
 
-        # store results
-        scores['n_features'] = len(subset)
-        scores['dataset_no'] = dataset_no
-        scores['time_elapsed'] = time_elapsed
-        scores['validation_method'] = validation_method
-        results = results.append(scores)
-
+            # store results
+            scores['n_features'] = len(subset)
+            scores['ranking_method'] = ranking_method
+            scores['cpu_time'] = time_elapsed
+            results = results.append(scores)
+            
+    results['result_type'] = 'validation'
+    results['dataset_no'] = dataset_no
+    results['validation_method'] = validation_method
     return results
 
 def run_validation_pool(validation_func, validation_method=None):
@@ -105,5 +107,7 @@ def run_pool(func, outfolder, *map_args):
     results = pd.concat(pool_results)
 
     # write to csv
-    outpath = get_outpath(dataset_dir, outfolder)
-    results.to_csv('{}.csv'.format(outpath), index=False)
+    outpath = '{}.csv'.format(get_outpath(dataset_dir, outfolder))
+    if os.path.exists(outpath): # merge with existing results
+        results = pd.concat([ pd.read_csv(outpath), results ])
+    results.to_csv(outpath, index=False)

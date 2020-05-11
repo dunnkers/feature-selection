@@ -6,7 +6,7 @@ from sklearn.model_selection import cross_val_score
 
 def KNN_5Fold(X, y):
     estimator = KNeighborsClassifier(n_neighbors=1)
-    scores = cross_val_score(estimator, X, y, cv=5)
+    scores = cross_val_score(estimator, X, y, cv=5, verbose=1)
     output = pd.DataFrame(data={
         'fold_no': range(1, len(scores) + 1),
         'score': scores

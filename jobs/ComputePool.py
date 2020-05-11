@@ -28,7 +28,6 @@ def ranking_pool(dataset_no, filename, ranking_func, ranking_method):
     ranking = pd.Series(ranking).dropna() # don't store unranked features
     feature_names = np.take(feature_names, ranking.index) # filter accordingly
     output = pd.DataFrame(data={
-        'result_type': 'ranking',
         'feature_name': feature_names,
         'feature_rank': ranking,
         'cpu_time': time_elapsed,
@@ -73,7 +72,6 @@ def validation_pool(dataset_no, filename, validation_func, validation_method):
             scores['cpu_time'] = time_elapsed
             results = results.append(scores)
             
-    results['result_type'] = 'validation'
     results['dataset_no'] = dataset_no
     results['validation_method'] = validation_method
     return results

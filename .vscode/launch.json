@@ -32,16 +32,6 @@
             ]
         },
         {
-            "name": "<jobs>: 3Class_[...]",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "args": [
-                "${workspaceFolder}/data/3Class_Datasets_Loc_2"
-            ]
-        },
-        {
             "name": "<jobs>: GAMETES_2.2_[...]",
             "type": "python",
             "request": "launch",

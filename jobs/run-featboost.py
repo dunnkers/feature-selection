@@ -15,7 +15,7 @@ def FeatBoost_XGBoost(X, y):
     # Setup FS method
     fs = FeatBoostClassification(estimator=[xgboost_ensemble,\
         xgboost_ensemble, xgboost_ensemble], number_of_folds = 10,\
-            siso_ranking_size = 8,\
+            siso_ranking_size = 5,\
             max_number_of_features = 100,\
             siso_order=4,\
             epsilon=1e-18,\

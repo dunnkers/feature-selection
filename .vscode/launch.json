@@ -40,6 +40,16 @@
             "args": [
                 "${workspaceFolder}/data/6_bit_mutliplexer"
             ]
+        },
+        {
+            "name": "run-multisurf: 6_bit_[...]",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/jobs/run-multisurf.py",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/6_bit_mutliplexer"
+            ]
         }
     ]
 }

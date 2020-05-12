@@ -9,8 +9,8 @@
 module load Python/3.6.4-foss-2018a
 pip install --quiet --user xgboost
 echo "executing 'python jobs/run-rfe.py $dataset'..."
-python jobs/run-rfe.py $1
+python jobs/run-rfe.py $dataset
 echo "executing 'python jobs/run-featboost.py $dataset'..."
-python jobs/run-featboost.py $1
+python jobs/run-featboost.py $dataset
 echo "executing 'python jobs/run-validation.py $dataset'..."
-python jobs/run-validation.py $1
+python jobs/run-validation.py $dataset

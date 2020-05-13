@@ -1,27 +1,40 @@
 #!/bin/sh
 # 
-# Submits computation jobs for ALL datasets apparent in system. 
+# Submits computation jobs for ALL datasets. 
 # 
 # → Be considerate before submitting this many jobs to the cluster.
 # 
 
+# i=0
+# while IFS=, read -r col1 col2
+# do
+#     if [ $i -eq 3 ]; then
+#         echo "I got:$col1|$col2"
+#     fi
+#     ((i=i+1))
+# done < ./data/rebate-descriptor.csv
+# exit
+
 ./scripts/upload-files.sh
 
-submitted_jobs=0
-for i in `find ./data -type d `; do
-    if [ -d $i ]; then
-        j=`ls -1 $i | wc -l`;
-        if [ $j -eq  30 ]; then
-            if [ $submitted_jobs -gt 15 ]; then # limit seems to be 19. 15 to be safe.
-                echo "[Job submission limit hit] Waiting a minute before submitting new jobs...";
-                sleep 60;
-                ((submitted_jobs=0))
-            fi;
-            echo "Submitting job for dataset: $i";
-            ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl "sbatch --job-name=${i} --export=dataset=$i scripts/jobs/any-job.sh"
-            ((submitted_jobs=submitted_jobs+1))
-        fi;
-    fi;
-done
+echo 
+echo "Select a dataset collection to submit:"
+select data_collection in ./data/*.csv
+do
+if [[ ! -z $data_collection ]]; then
+    n_datasets=$(wc -l $data_collection | grep -o "[0-9]\+")-1
+    job_name=${data_collection##*/}
+    echo "Submitting $n_datasets datasets from '${job_name%.csv}'..."
+    ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl "sbatch --job-name=${job_name%.csv} --export=data_collection=$data_collection --array=0-$n_datasets scripts/jobs/job-array.sh"
+    echo "Submitted $n_datasets in a SLURM job array ✨"
 
-echo "Submitted all jobs ✨"
+    echo
+    read -p "Submit another dataset? (y/n)" -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        break
+    fi
+else
+    echo "Invalid choice, choose again or press CTRL+C to quit job submission."
+fi
+done

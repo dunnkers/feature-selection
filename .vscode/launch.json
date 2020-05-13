@@ -60,6 +60,17 @@
             "args": [
                 "${workspaceFolder}/data/6_bit_mutliplexer"
             ]
+        },
+        {
+            "name": "run-rfe: rebate-short-2 0",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/jobs/run-rfe.py",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/rebate-short-2",
+                "0"
+            ]
         }
     ]
 }

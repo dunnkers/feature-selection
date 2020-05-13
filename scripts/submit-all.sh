@@ -5,12 +5,14 @@
 # → Be considerate before submitting this many jobs to the cluster.
 # 
 
+./scripts/upload-files.sh
+
 submitted_jobs=0
 for i in `find ./data -type d `; do
     if [ -d $i ]; then
         j=`ls -1 $i | wc -l`;
         if [ $j -eq  30 ]; then
-            if [ $submitted_jobs -gt 18 ]; then # limit seems to be 19.
+            if [ $submitted_jobs -gt 15 ]; then # limit seems to be 19. 15 to be safe.
                 echo "[Job submission limit hit] Waiting a minute before submitting new jobs...";
                 sleep 60;
                 ((submitted_jobs=0))

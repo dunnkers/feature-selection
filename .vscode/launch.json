@@ -32,6 +32,16 @@
             ]
         },
         {
+            "name": "run-validation: 6_bit_[...]",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/jobs/run-validation.py",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/6_bit_mutliplexer"
+            ]
+        },
+        {
             "name": "run-featboost: 6_bit_[...]",
             "type": "python",
             "request": "launch",

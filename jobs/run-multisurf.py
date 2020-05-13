@@ -6,7 +6,7 @@ import numpy as np
 def MultiSURF(X, y):
     # Setup FS method
     dataset_features = np.size(X, axis=1) # rank all features
-    fs = MultiSURFAlgorithm(n_features_to_select=dataset_features)
+    fs = MultiSURFAlgorithm(n_features_to_select=dataset_features, verbose=True)
 
     # Run Feature Selection
     fs.fit(X, y)

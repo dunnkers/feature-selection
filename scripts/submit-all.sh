@@ -12,11 +12,15 @@ echo "Select a dataset collection to submit:"
 select data_collection in ./data/*.csv
 do
 if [[ ! -z $data_collection ]]; then
-    n_datasets=$(wc -l $data_collection | grep -o "[0-9]\+")-1
+    n_datasets=$(cat $data_collection | sed '/^\s*$/d' | wc -l | grep -o "[0-9]\+")
+    ((n_datasets-=1)) # skip csv header
     job_name=${data_collection##*/}
     echo "Submitting $n_datasets datasets from '${job_name%.csv}'..."
-    ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl "sbatch --job-name=${job_name%.csv} --export=data_collection=$data_collection --array=0-$n_datasets scripts/jobs/job-array.sh"
-    echo "Submitted $n_datasets in a SLURM job array ✨"
+    cpus=24
+    n_tasks=$(( ( $n_datasets + ( $cpus-1 ) ) / $cpus )) # tasks. round up.
+    echo "Assigning the datasets to $n_tasks tasks."
+    ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl "sbatch --job-name=${job_name%.csv} --export=data_collection=$data_collection --array=0-$n_tasks scripts/jobs/job-array.sh"
+    echo "Submitted SLURM job array ✨"
 
     echo
     read -p "Submit another dataset? (y/n)" -n 1 -r

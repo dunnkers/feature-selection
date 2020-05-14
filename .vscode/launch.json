@@ -68,7 +68,19 @@
             "program": "${workspaceFolder}/jobs/run-rfe.py",
             "console": "integratedTerminal",
             "args": [
-                "${workspaceFolder}/data/rebate-short-2",
+                "${workspaceFolder}/data/rebate-short-2.csv",
+                "test-job-id",
+                "0"
+            ]
+        },
+        {
+            "name": "run-validation: rebate-short-2 test-job-id 0",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/jobs/run-validation.py",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/rebate-short-2.csv",
                 "test-job-id",
                 "0"
             ]

@@ -3,6 +3,7 @@
 import multiprocessing 
 import time # For clocking the calculation. 
 import sys
+import math
 import pandas as pd
 import numpy as np
 import os
@@ -14,7 +15,15 @@ def load_dataset(filename):
     y = dataset['Class'].values
     return (dataset, X, y)
 
-def ranking_pool(dataset_no, filename, ranking_func, ranking_method):
+def save_output(output, outpath):
+    outdir = os.path.dirname(outpath)
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
+    if os.path.exists(outpath): # merge with existing results
+        output = pd.concat([ pd.read_csv(outpath), output ])
+    output.to_csv(outpath, index=False)
+
+def ranking_pool(filename, ranking_func, ranking_method):
     dataset, X, y = load_dataset(filename)
 
     # Execute feature ranking
@@ -31,24 +40,24 @@ def ranking_pool(dataset_no, filename, ranking_func, ranking_method):
         'feature_name': feature_names,
         'feature_rank': ranking,
         'cpu_time': time_elapsed,
-        'dataset_no': dataset_no,
         'ranking_method': ranking_method
     })
-    return output
+
+    # Save to .csv
+    outpath = '{}.csv'.format(os.path.join('results', 'ranking', filename))
+    save_output(output, outpath)
 
 def run_ranking_pool(ranking_func, ranking_method=None):
     ranking_method = ranking_method or ranking_func.__name__
     print('Ranking pool [{}]'.format(ranking_method))
     run_pool(ranking_pool, 'ranking', ranking_func, ranking_method)
 
-def validation_pool(dataset_no, filename, validation_func, validation_method):
+def validation_pool(filename, validation_func, validation_method):
     dataset, _, y = load_dataset(filename)
 
     # Load feature ranking
-    dataset_dir = os.path.dirname(filename)
-    inpath = '{}.csv'.format(get_outpath(dataset_dir, 'ranking'))
-    all_data = pd.read_csv(inpath)
-    data = all_data.loc[all_data['dataset_no'] == int(dataset_no)]
+    inpath = '{}.csv'.format(os.path.join('results', 'ranking', filename))
+    data = pd.read_csv(inpath)
 
     # Split by each ranking method
     results = pd.DataFrame()
@@ -72,9 +81,9 @@ def validation_pool(dataset_no, filename, validation_func, validation_method):
             scores['cpu_time'] = time_elapsed
             results = results.append(scores)
             
-    results['dataset_no'] = dataset_no
     results['validation_method'] = validation_method
-    return results
+    outpath = '{}.csv'.format(os.path.join('results', 'validation', filename))
+    save_output(results, outpath)
 
 def run_validation_pool(validation_func, validation_method=None):
     validation_method = validation_method or validation_func.__name__
@@ -83,7 +92,36 @@ def run_validation_pool(validation_func, validation_method=None):
 
 def run_pool(func, outfolder, *map_args):
     _, data_collection, job_id, task_id = sys.argv
+    data_col = pd.read_csv(data_collection)
+    n_rows, _ = data_col.shape
+    pool_size = multiprocessing.cpu_count()
+    tasks = math.ceil(n_rows / pool_size)
+    # inputs for this task
+    inputs = np.array_split(data_col.path, tasks)[int(task_id)]
+    inputs = inputs.map(lambda input: np.append(input, map_args))
+    print('Running pool... [{} workers, {} datasets, {} tasks]'.format(\
+        pool_size, len(inputs), tasks))
+    begin = time.time()
+    pool = multiprocessing.Pool(processes=pool_size,)
+    pool.starmap(func, inputs)
+    pool.close() # Stop pool
+    pool.join()  # Wrap up data from workers
+    elapsedTime = time.time() - begin
+    print('Time elapsed for ' , pool_size, ' workers: ', elapsedTime, ' seconds')
+
+
+    # 1. put all replicates in data descriptor
+    # 2. make ranking/validation functions 1:1;
+        # - save results in exact path
+        # - remove dataset_no
+
     # read_csv ... etcetera.
+    # pd.read_csv(data_collection).loc[int(task_id)]
+    exit()
+
+
+
+
     dataset_dir = sys.argv[1]
     inputs = sorted(get_datasets(dataset_dir)) # sort datasets by filename
     poolSize = get_poolSize()

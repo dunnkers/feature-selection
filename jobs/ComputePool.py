@@ -7,7 +7,6 @@ import math
 import pandas as pd
 import numpy as np
 import os
-from util import get_datasets, get_poolSize, get_outpath
 
 def load_dataset(filename):
     dataset = pd.read_csv(filename, sep='\t')
@@ -23,7 +22,7 @@ def save_output(output, outpath):
         output = pd.concat([ pd.read_csv(outpath), output ])
     output.to_csv(outpath, index=False)
 
-def ranking_pool(filename, ranking_func, ranking_method):
+def ranking_pool(filename, job_id, ranking_func, ranking_method):
     dataset, X, y = load_dataset(filename)
 
     # Execute feature ranking
@@ -44,15 +43,16 @@ def ranking_pool(filename, ranking_func, ranking_method):
     })
 
     # Save to .csv
-    outpath = '{}.csv'.format(os.path.join('results', 'ranking', filename))
+    outpath = '{}.csv'.format(\
+        os.path.join('results', job_id, 'ranking', filename))
     save_output(output, outpath)
 
 def run_ranking_pool(ranking_func, ranking_method=None):
     ranking_method = ranking_method or ranking_func.__name__
     print('Ranking pool [{}]'.format(ranking_method))
-    run_pool(ranking_pool, 'ranking', ranking_func, ranking_method)
+    run_pool(ranking_pool, ranking_func, ranking_method)
 
-def validation_pool(filename, validation_func, validation_method):
+def validation_pool(filename, job_id, validation_func, validation_method):
     dataset, _, y = load_dataset(filename)
 
     # Load feature ranking
@@ -82,23 +82,24 @@ def validation_pool(filename, validation_func, validation_method):
             results = results.append(scores)
             
     results['validation_method'] = validation_method
-    outpath = '{}.csv'.format(os.path.join('results', 'validation', filename))
+    outpath = '{}.csv'.format(\
+        os.path.join('results', job_id, 'validation', filename))
     save_output(results, outpath)
 
 def run_validation_pool(validation_func, validation_method=None):
     validation_method = validation_method or validation_func.__name__
     print('Validation pool [{}]'.format(validation_method))
-    run_pool(validation_pool, 'validation', validation_func, validation_method)
+    run_pool(validation_pool, validation_func, validation_method)
 
-def run_pool(func, outfolder, *map_args):
-    _, data_collection, job_id, task_id = sys.argv
+def run_pool(func, *map_args):
+    data_collection, job_id, task_id = sys.argv[1], sys.argv[2], sys.argv[3]
     data_col = pd.read_csv(data_collection)
     n_rows, _ = data_col.shape
     pool_size = multiprocessing.cpu_count()
     tasks = math.ceil(n_rows / pool_size)
     # inputs for this task
     inputs = np.array_split(data_col.path, tasks)[int(task_id)]
-    inputs = inputs.map(lambda input: np.append(input, map_args))
+    inputs = inputs.map(lambda input: [input, job_id, *map_args])
     print('Running pool... [{} workers, {} datasets, {} tasks]'.format(\
         pool_size, len(inputs), tasks))
     begin = time.time()
@@ -108,44 +109,3 @@ def run_pool(func, outfolder, *map_args):
     pool.join()  # Wrap up data from workers
     elapsedTime = time.time() - begin
     print('Time elapsed for ' , pool_size, ' workers: ', elapsedTime, ' seconds')
-
-
-    # 1. put all replicates in data descriptor
-    # 2. make ranking/validation functions 1:1;
-        # - save results in exact path
-        # - remove dataset_no
-
-    # read_csv ... etcetera.
-    # pd.read_csv(data_collection).loc[int(task_id)]
-    exit()
-
-
-
-
-    dataset_dir = sys.argv[1]
-    inputs = sorted(get_datasets(dataset_dir)) # sort datasets by filename
-    poolSize = get_poolSize()
-
-    # configure pool
-    pool = multiprocessing.Pool(processes=poolSize,)
-    pool_args = map(lambda x: np.append(x, map_args),\
-        enumerate(inputs, start=1)) # construct tuple as input parameters
-
-    # run pool
-    print('Running pool... [{} workers, {} datasets]'.format(\
-        poolSize, len(inputs)))
-    begin = time.time()
-    pool_results = pool.starmap(func, pool_args)
-    pool.close() # Stop pool
-    pool.join()  # Wrap up data from workers
-    elapsedTime = time.time() - begin
-    print('Time elapsed for ' , poolSize, ' workers: ', elapsedTime, ' seconds')
-
-    # concatenate results. remove duplicate columns
-    results = pd.concat(pool_results)
-
-    # write to csv
-    outpath = '{}.csv'.format(get_outpath(dataset_dir, outfolder))
-    if os.path.exists(outpath): # merge with existing results
-        results = pd.concat([ pd.read_csv(outpath), results ])
-    results.to_csv(outpath, index=False)

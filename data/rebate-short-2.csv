@@ -1,3 +1,3 @@
 theme,name,path,p_predictive,p,n,heritability,edm,p_alternate,p_key
-6_bit_mutliplexer,6_bit_mutliplexer,./data/6_bit_mutliplexer,6,6,500,1,None,None,"A_0,A_1"
-11_bit_mutliplexer,11_bit_mutliplexer,./data/11_bit_mutliplexer,11,11,1000,1,None,None,"A_0,A_1,A_2"
+6_bit_mutliplexer,6_bit_mutliplexer,./rebate/6_bit_mutliplexer,6,6,500,1,None,None,"A_0,A_1"
+11_bit_mutliplexer,11_bit_mutliplexer,./rebate/11_bit_mutliplexer,11,11,1000,1,None,None,"A_0,A_1,A_2"

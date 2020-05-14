@@ -62,13 +62,14 @@
             ]
         },
         {
-            "name": "run-rfe: rebate-short-2 0",
+            "name": "run-rfe: rebate-short-2 test-job-id 0",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/jobs/run-rfe.py",
             "console": "integratedTerminal",
             "args": [
                 "${workspaceFolder}/data/rebate-short-2",
+                "test-job-id",
                 "0"
             ]
         }

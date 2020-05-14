@@ -82,7 +82,7 @@ def run_validation_pool(validation_func, validation_method=None):
     run_pool(validation_pool, 'validation', validation_func, validation_method)
 
 def run_pool(func, outfolder, *map_args):
-    data_collection, task_id = sys.argv[1], sys.argv[2]
+    _, data_collection, job_id, task_id = sys.argv
     # read_csv ... etcetera.
     dataset_dir = sys.argv[1]
     inputs = sorted(get_datasets(dataset_dir)) # sort datasets by filename

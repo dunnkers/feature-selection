@@ -5,16 +5,6 @@
 # → Be considerate before submitting this many jobs to the cluster.
 # 
 
-# i=0
-# while IFS=, read -r col1 col2
-# do
-#     if [ $i -eq 3 ]; then
-#         echo "I got:$col1|$col2"
-#     fi
-#     ((i=i+1))
-# done < ./data/rebate-descriptor.csv
-# exit
-
 ./scripts/upload-files.sh
 
 echo 

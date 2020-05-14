@@ -2,7 +2,7 @@
 import numpy as np
 from lib.feat_boost import FeatBoostClassification
 from xgboost import XGBClassifier
-from ComputePool import run_ranking_pool
+from pool.ComputePool import run_pool, ranking_pool
 
 def FeatBoost_XGBoost(X, y):
     # Setup estimator
@@ -33,4 +33,4 @@ def FeatBoost_XGBoost(X, y):
     return ranking
 
 if __name__ == '__main__':
-    run_ranking_pool(FeatBoost_XGBoost)
+    run_pool(ranking_pool, FeatBoost_XGBoost, 'FeatBoost_XGBoost')

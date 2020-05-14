@@ -1,7 +1,6 @@
 #!/usr/bin/env python
- 
 import multiprocessing 
-import time # For clocking the calculation. 
+import time
 import sys
 import math
 import pandas as pd
@@ -22,7 +21,7 @@ def save_output(output, outpath):
         output = pd.concat([ pd.read_csv(outpath), output ])
     output.to_csv(outpath, index=False)
 
-def ranking_pool(filename, job_id, ranking_func, ranking_method):
+def ranking_pool(ranking_func, ranking_method, filename, job_id):
     dataset, X, y = load_dataset(filename)
 
     # Execute feature ranking
@@ -47,12 +46,7 @@ def ranking_pool(filename, job_id, ranking_func, ranking_method):
         os.path.join('results', job_id, 'ranking', filename))
     save_output(output, outpath)
 
-def run_ranking_pool(ranking_func, ranking_method=None):
-    ranking_method = ranking_method or ranking_func.__name__
-    print('Ranking pool [{}]'.format(ranking_method))
-    run_pool(ranking_pool, ranking_func, ranking_method)
-
-def validation_pool(filename, job_id, validation_func, validation_method):
+def validation_pool(validation_func, validation_method, filename, job_id):
     dataset, _, y = load_dataset(filename)
 
     # Load feature ranking
@@ -86,20 +80,19 @@ def validation_pool(filename, job_id, validation_func, validation_method):
         os.path.join('results', job_id, 'validation', filename))
     save_output(results, outpath)
 
-def run_validation_pool(validation_func, validation_method=None):
-    validation_method = validation_method or validation_func.__name__
-    print('Validation pool [{}]'.format(validation_method))
-    run_pool(validation_pool, validation_func, validation_method)
-
 def run_pool(func, *map_args):
-    data_collection, job_id, task_id = sys.argv[1], sys.argv[2], sys.argv[3]
-    data_col = pd.read_csv(data_collection)
-    n_rows, _ = data_col.shape
+    # Determine task division according to arguments
+    data_col_path, job_id, task_id = sys.argv[1], sys.argv[2], sys.argv[3]
+    data_collection = pd.read_csv(data_col_path)
+    n_datasets, _ = data_collection.shape
     pool_size = multiprocessing.cpu_count()
-    tasks = math.ceil(n_rows / pool_size)
-    # inputs for this task
-    inputs = np.array_split(data_col.path, tasks)[int(task_id)]
-    inputs = inputs.map(lambda input: [input, job_id, *map_args])
+    tasks = math.ceil(n_datasets / pool_size)
+
+    # Prepare inputs
+    inputs = np.array_split(data_collection.path, tasks)[int(task_id)]
+    inputs = inputs.map(lambda input: [*map_args, input, job_id])
+
+    # Run pool
     print('Running pool... [{} workers, {} datasets, {} tasks]'.format(\
         pool_size, len(inputs), tasks))
     begin = time.time()

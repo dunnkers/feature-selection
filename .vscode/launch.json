@@ -22,20 +22,20 @@
             ]
         },
         {
-            "name": "run-validation: 3Class_[...]",
+            "name": "run-knn: 3Class_[...]",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-validation.py",
+            "program": "${workspaceFolder}/jobs/run-knn.py",
             "console": "integratedTerminal",
             "args": [
                 "${workspaceFolder}/data/3Class_Datasets_Loc_2"
             ]
         },
         {
-            "name": "run-validation: 6_bit_[...]",
+            "name": "run-knn: 6_bit_[...]",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-validation.py",
+            "program": "${workspaceFolder}/jobs/run-knn.py",
             "console": "integratedTerminal",
             "args": [
                 "${workspaceFolder}/data/6_bit_mutliplexer"
@@ -74,10 +74,10 @@
             ]
         },
         {
-            "name": "run-validation: rebate-short-2 test-job-id 0",
+            "name": "run-knn: rebate-short-2 test-job-id 0",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-validation.py",
+            "program": "${workspaceFolder}/jobs/run-knn.py",
             "console": "integratedTerminal",
             "args": [
                 "${workspaceFolder}/data/rebate-short-2.csv",

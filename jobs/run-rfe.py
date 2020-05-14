@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from ComputePool import run_ranking_pool
+from pool.ComputePool import run_pool, ranking_pool
 from sklearn.feature_selection import RFE
 from xgboost import XGBClassifier
 
@@ -20,4 +20,4 @@ def RFE_XGBoost(X, y):
     return fs.ranking_
 
 if __name__ == '__main__':
-    run_ranking_pool(RFE_XGBoost)
+    run_pool(ranking_pool, RFE_XGBoost, 'RFE_XGBoost')

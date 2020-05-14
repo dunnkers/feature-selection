@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-from ComputePool import run_ranking_pool
-from skrebate import MultiSURF as MultiSURFAlgorithm
+from pool.ComputePool import run_pool, ranking_pool
+from skrebate import MultiSURF
 import numpy as np
 
-def MultiSURF(X, y):
+def execute_MultiSURF(X, y):
     # Setup FS method
     dataset_features = np.size(X, axis=1) # rank all features
-    fs = MultiSURFAlgorithm(n_features_to_select=dataset_features, verbose=True)
+    fs = MultiSURF(n_features_to_select=dataset_features, verbose=True)
 
     # Run Feature Selection
     fs.fit(X, y)
@@ -14,4 +14,4 @@ def MultiSURF(X, y):
     return fs.top_features_
 
 if __name__ == '__main__':
-    run_ranking_pool(MultiSURF)
+    run_pool(ranking_pool, execute_MultiSURF, 'MultiSURF')

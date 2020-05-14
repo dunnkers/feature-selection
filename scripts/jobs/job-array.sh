@@ -21,4 +21,4 @@ pip install --quiet --user skrebate
 python jobs/run-rfe.py $data_collection $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID
 python jobs/run-featboost.py $data_collection $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID
 python jobs/run-multisurf.py $data_collection $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID
-python jobs/run-validation.py $data_collection $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID
+python jobs/run-knn.py $data_collection $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID

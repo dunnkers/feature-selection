@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from ComputePool import run_validation_pool
+from pool.ComputePool import run_pool, validation_pool
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import cross_val_score
@@ -14,4 +14,4 @@ def KNN_5Fold(X, y):
     return output
 
 if __name__ == '__main__':
-    run_validation_pool(KNN_5Fold)
+    run_pool(validation_pool, KNN_5Fold, 'KNN_5Fold')

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
+from ..pipeline.compute_pool import run_pool, ranking_pool
 import numpy as np
-from lib.feat_boost import FeatBoostClassification
+from .lib.feat_boost import FeatBoostClassification
 from xgboost import XGBClassifier
-from pool.ComputePool import run_pool, ranking_pool
 
 def FeatBoost_XGBoost(X, y):
     # Setup estimator

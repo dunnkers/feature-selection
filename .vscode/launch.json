@@ -5,85 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "RFE",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
-        },
-        {
-            "name": "run-rfe: 3Class_[...]",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-rfe.py",
-            "console": "integratedTerminal",
-            "args": [
-                "${workspaceFolder}/data/3Class_Datasets_Loc_2"
-            ]
-        },
-        {
-            "name": "run-knn: 3Class_[...]",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-knn.py",
-            "console": "integratedTerminal",
-            "args": [
-                "${workspaceFolder}/data/3Class_Datasets_Loc_2"
-            ]
-        },
-        {
-            "name": "run-knn: 6_bit_[...]",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-knn.py",
-            "console": "integratedTerminal",
-            "args": [
-                "${workspaceFolder}/data/6_bit_mutliplexer"
-            ]
-        },
-        {
-            "name": "run-featboost: 6_bit_[...]",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-featboost.py",
-            "console": "integratedTerminal",
-            "args": [
-                "${workspaceFolder}/data/6_bit_mutliplexer"
-            ]
-        },
-        {
-            "name": "run-multisurf: 6_bit_[...]",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-multisurf.py",
-            "console": "integratedTerminal",
-            "args": [
-                "${workspaceFolder}/data/6_bit_mutliplexer"
-            ]
-        },
-        {
-            "name": "run-rfe: rebate-short-2 test-job-id 0",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-rfe.py",
-            "console": "integratedTerminal",
+            "module": "fseval.ranking.rfe",
             "args": [
                 "${workspaceFolder}/data/rebate-short-2.csv",
-                "test-job-id",
+                // "test-`date +%Y%m%d-%H%M`",
+                "test",
                 "0"
             ]
         },
         {
-            "name": "run-knn: rebate-short-2 test-job-id 0",
+            "name": "KNN",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/jobs/run-knn.py",
-            "console": "integratedTerminal",
+            "module": "fseval.ranking.knn",
             "args": [
                 "${workspaceFolder}/data/rebate-short-2.csv",
-                "test-job-id",
+                "test",
                 "0"
             ]
-        }
+        },
     ]
 }

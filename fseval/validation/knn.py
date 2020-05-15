@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from pool.ComputePool import run_pool, validation_pool
+from ..pipeline.compute_pool import run_pool, validation_pool
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import cross_val_score

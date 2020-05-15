@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from pool.ComputePool import run_pool, ranking_pool
+from ..pipeline.compute_pool import run_pool, ranking_pool
 from sklearn.feature_selection import RFE
 from xgboost import XGBClassifier
 

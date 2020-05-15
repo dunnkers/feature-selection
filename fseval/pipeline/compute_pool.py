@@ -93,8 +93,9 @@ def run_pool(func, *map_args):
     inputs = inputs.map(lambda input: [*map_args, input, job_id])
 
     # Run pool
-    print('Running pool... [{} workers, {} datasets, {} tasks]'.format(\
-        pool_size, len(inputs), tasks))
+    print('Running pool `{}` task {}... [{} workers, {} datasets, {} tasks]'.format(
+        job_id, task_id, pool_size, len(inputs), tasks))
+    print('\tmap_args = {}'.format(map_args))
     begin = time.time()
     pool = multiprocessing.Pool(processes=pool_size,)
     pool.starmap(func, inputs)

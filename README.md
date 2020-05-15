@@ -1,8 +1,13 @@
-# feature-selection
-By Jeroen Overschie.
+# fseval
+Feature Selection evaluation framework.
 
-## Setup
-To run on the Peregrine HPC environment (University of Groningen), the following setup can be used.
+## Running
+```shell
+python -m fseval.ranking.rfe ./data/rebate.csv "big-test-1" 0
+```
+
+## Peregrine setup
+(setup specifically for running on the Peregrine HPC environment at the University of Groningen.)
 
 1. Create an environment variable `PEREGRINE_USERNAME` with your peregrine username login credentials.
 
@@ -51,4 +56,6 @@ Now, your files will be automatically copied over to Peregrine on every git comm
 ```
 
 ## About
+By Jeroen Overschie | University of Groningen
+
 MSc Research Internship 2020.

@@ -6,12 +6,13 @@ import math
 import pandas as pd
 import numpy as np
 import os
+import importlib
 
-def load_dataset(filename):
-    dataset = pd.read_csv(filename, sep='\t')
-    X = dataset.drop('Class', axis=1).values
-    y = dataset['Class'].values
-    return (dataset, X, y)
+def load_dataset(datacol):
+    path = '...dataset_adapters.{}'.format(datacol.adapter)
+    adapter = importlib.import_module(path, __name__)
+    dataset = adapter.load_dataset(datacol.path)
+    return dataset
 
 def save_output(output, outpath):
     outdir = os.path.dirname(outpath)
@@ -21,19 +22,19 @@ def save_output(output, outpath):
         output = pd.concat([ pd.read_csv(outpath), output ])
     output.to_csv(outpath, index=False)
 
-def ranking_pool(ranking_func, ranking_method, filename, job_id):
-    dataset, X, y = load_dataset(filename)
+def ranking_pool(ranking_func, ranking_method, datacol, job_id):
+    filename = datacol.path
+    dataset = load_dataset(datacol)
 
     # Execute feature ranking
     start = time.time()
-    ranking = ranking_func(X, y)
+    ranking = ranking_func(dataset.data, dataset.target)
     time_elapsed = time.time() - start
     print('FS {} took {} seconds.'.format(ranking_method, time_elapsed))
 
     # Write results to CSV
-    feature_names = dataset.drop('Class', axis=1).columns.values
     ranking = pd.Series(ranking).dropna() # don't store unranked features
-    feature_names = np.take(feature_names, ranking.index) # filter accordingly
+    feature_names = np.take(dataset.feature_names, ranking.index) # filter
     output = pd.DataFrame(data={
         'feature_name': feature_names,
         'feature_rank': ranking,
@@ -46,11 +47,12 @@ def ranking_pool(ranking_func, ranking_method, filename, job_id):
         os.path.join('results', job_id, 'ranking', filename))
     save_output(output, outpath)
 
-def validation_pool(validation_func, validation_method, filename, job_id):
-    dataset, _, y = load_dataset(filename)
+def validation_pool(validation_func, validation_method, datacol, job_id):
+    filename = datacol.path
+    dataset = load_dataset(datacol)
 
     # Load feature ranking
-    inpath = '{}.csv'.format(os.path.join('results', 'ranking', filename))
+    inpath = '{}.csv'.format(os.path.join('results', job_id, 'ranking', filename))
     data = pd.read_csv(inpath)
 
     # Split by each ranking method
@@ -58,15 +60,19 @@ def validation_pool(validation_func, validation_method, filename, job_id):
     for ranking_method, ranking_data in data.groupby('ranking_method'):
         ranking = ranking_data.sort_values('feature_rank')['feature_name']\
             .dropna().values
-        
+
         # Loop all result rows
         for _, item in ranking_data.iterrows():
             subset = ranking[:int(item.feature_rank)] # all up till this feature
-            X_subset = dataset[subset].values
+            subset = np.unique(subset) # when multiple rankings were accidentally loaded
+            sorter = np.argsort(dataset.feature_names)
+            subset_indices = sorter[np.searchsorted(\
+                dataset.feature_names, subset, sorter=sorter)]
+            X_subset = np.take(dataset.data, subset_indices, axis=1)
 
             # run validation
             start = time.time()
-            scores = validation_func(X_subset, y)
+            scores = validation_func(X_subset, dataset.target)
             time_elapsed = time.time() - start
 
             # store results
@@ -80,6 +86,10 @@ def validation_pool(validation_func, validation_method, filename, job_id):
         os.path.join('results', job_id, 'validation', filename))
     save_output(results, outpath)
 
+def pool(func, *inputs):
+    filename = inputs[2]
+
+
 def run_pool(func, *map_args):
     # Determine task division according to arguments
     data_col_path, job_id, task_id = sys.argv[1], sys.argv[2], sys.argv[3]
@@ -89,12 +99,12 @@ def run_pool(func, *map_args):
     tasks = math.ceil(n_datasets / pool_size)
 
     # Prepare inputs
-    inputs = np.array_split(data_collection.path, tasks)[int(task_id)]
-    inputs = inputs.map(lambda input: [*map_args, input, job_id])
+    datasets = np.array_split(data_collection, tasks)[int(task_id)]
+    inputs = map(lambda row: [*map_args, row[1], job_id], datasets.iterrows())
 
     # Run pool
     print('Running pool `{}` task {}... [{} workers, {} datasets, {} tasks]'.format(
-        job_id, task_id, pool_size, len(inputs), tasks))
+        job_id, task_id, pool_size, len(datasets), tasks))
     print('\tmap_args = {}'.format(map_args))
     begin = time.time()
     pool = multiprocessing.Pool(processes=pool_size,)

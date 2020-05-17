@@ -58,7 +58,7 @@ def validation_pool(validation_func, validation_method, datacol, job_id):
     results = pd.DataFrame()
     for ranking_method, ranking_data in data.groupby('ranking_method'):
         print('validating {}'.format(ranking_method))
-        
+
         # iterate ranked feature groups. `groupby` sorts by feature rank.
         for feature_rank, _ in ranking_data.groupby('feature_rank'):
             print('validating subset with rank {}'.format(feature_rank))
@@ -84,16 +84,14 @@ def validation_pool(validation_func, validation_method, datacol, job_id):
         os.path.join('results', job_id, 'validation', filename))
     save_output(results, outpath)
 
-def pool(func, *inputs):
-    filename = inputs[2]
-
-
 def run_pool(func, *map_args):
     # Determine task division according to arguments
     data_col_path, job_id, task_id = sys.argv[1], sys.argv[2], sys.argv[3]
     data_collection = pd.read_csv(data_col_path)
     n_datasets, _ = data_collection.shape
-    pool_size = multiprocessing.cpu_count()
+    cpus = multiprocessing.cpu_count()
+    cpus_per_task = 4
+    pool_size = math.ceil(cpus / cpus_per_task)
     tasks = math.ceil(n_datasets / pool_size)
 
     # Prepare inputs
@@ -101,8 +99,10 @@ def run_pool(func, *map_args):
     inputs = map(lambda row: [*map_args, row[1], job_id], datasets.iterrows())
 
     # Run pool
-    print('Running pool `{}` task {}... [{} workers, {} datasets, {} tasks]'.format(
-        job_id, task_id, pool_size, len(datasets), tasks))
+    print('''Running pool `{}` with pool size {} task {}... \
+        [{} workers, {} datasets, {} tasks]'''.format(
+        job_id, pool_size, task_id,\
+        cpus, len(datasets), tasks))
     print('\tmap_args = {}'.format(map_args))
     begin = time.time()
     pool = multiprocessing.Pool(processes=pool_size,)

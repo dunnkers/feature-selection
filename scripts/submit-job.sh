@@ -17,8 +17,10 @@ if [[ ! -z $data_collection ]]; then
     job_name=${data_collection##*/}
     echo "Submitting $n_datasets datasets from '${job_name%.csv}'..."
     cpus=24
-    n_tasks=$(( ( $n_datasets + ( $cpus-1 ) ) / $cpus )) # tasks. round up.
-    echo "Assigning the datasets to $n_tasks tasks."
+    cpus_per_task=4
+    pool_size=$(( ( $cpus + ( $cpus_per_task-1 ) ) / $cpus_per_task )) # ceil'ed
+    n_tasks=$(( ( $n_datasets + ( $pool_size-1 ) ) / $pool_size ))
+    echo "Pool size of $pool_size. Assigning datasets to $n_tasks tasks."
     ((n_tasks-=1)) # correct for array index of 0.
     ssh $PEREGRINE_USERNAME@peregrine.hpc.rug.nl "sbatch --job-name=${job_name%.csv} --export=data_collection=$data_collection --array=0-$n_tasks scripts/jobs/job-array.sh"
     echo "Submitted SLURM job array ✨"

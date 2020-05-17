@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --time=00:01:00
+#SBATCH --time=06:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --mem=250
+#SBATCH --mem=3000
 #SBATCH --output=logs/slurm-%A_%a.out
-#SBATCH --partition=short
+#SBATCH --partition=regular
 
 if [[ -z $data_collection ]]; then
     echo 'No data collection provided.'

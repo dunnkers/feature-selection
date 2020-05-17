@@ -8,14 +8,20 @@ def FeatBoost_XGBoost(X, y):
     # Setup estimator
     xgboost_ensemble = XGBClassifier(max_depth=3, learning_rate=0.1,\
         n_estimators=200, silent=True, objective='binary:logistic',\
-        booster='gbtree', n_jobs=1, nthread=None, gamma=0, min_child_weight=1,\
+        booster='gbtree', n_jobs=4, nthread=None, gamma=0, min_child_weight=1,\
         max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1,\
         reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5,\
         random_state=0, seed=None, missing=None)
     # Setup FS method
+    siso_ranking_size = 5
+    dims = np.size(X, axis=1)
+    if dims > 100:
+        siso_ranking_size = 10
+    if dims < siso_ranking_size:
+        siso_ranking_size = dims
     fs = FeatBoostClassification(estimator=[xgboost_ensemble,\
         xgboost_ensemble, xgboost_ensemble], number_of_folds = 10,\
-            siso_ranking_size = 5,\
+            siso_ranking_size = siso_ranking_size,\
             max_number_of_features = 100,\
             siso_order=4,\
             epsilon=1e-18,\

@@ -28,16 +28,15 @@ def ranking_pool(ranking_func, ranking_method, datacol, job_id):
 
     # Execute feature ranking
     start = time.time()
-    ranking = ranking_func(dataset.data, dataset.target)
+    ranking_all = ranking_func(dataset.data, dataset.target)
     time_elapsed = time.time() - start
     print('FS {} took {} seconds.'.format(ranking_method, time_elapsed))
 
     # Write results to CSV
-    ranking = pd.Series(ranking).dropna() # don't store unranked features
-    feature_names = np.take(dataset.feature_names, ranking.index) # filter
+    ranking = pd.Series(ranking_all).dropna()
     output = pd.DataFrame(data={
-        'feature_name': feature_names,
-        'feature_rank': ranking,
+        'feature_index': ranking.index,
+        'feature_rank': ranking.values,
         'cpu_time': time_elapsed,
         'ranking_method': ranking_method
     })
@@ -58,16 +57,15 @@ def validation_pool(validation_func, validation_method, datacol, job_id):
     # Split by each ranking method
     results = pd.DataFrame()
     for ranking_method, ranking_data in data.groupby('ranking_method'):
-        ranking = ranking_data.sort_values('feature_rank')['feature_name']\
-            .dropna().values
+        print('validating {}'.format(ranking_method))
+        
+        # iterate ranked feature groups. `groupby` sorts by feature rank.
+        for feature_rank, _ in ranking_data.groupby('feature_rank'):
+            print('validating subset with rank {}'.format(feature_rank))
 
-        # Loop all result rows
-        for _, item in ranking_data.iterrows():
-            subset = ranking[:int(item.feature_rank)] # all up till this feature
-            subset = np.unique(subset) # when multiple rankings were accidentally loaded
-            sorter = np.argsort(dataset.feature_names)
-            subset_indices = sorter[np.searchsorted(\
-                dataset.feature_names, subset, sorter=sorter)]
+            # construct subset- use all features up to this rank.
+            subset = ranking_data[ranking_data['feature_rank'] <= feature_rank]
+            subset_indices = subset['feature_index'].values
             X_subset = np.take(dataset.data, subset_indices, axis=1)
 
             # run validation
@@ -76,7 +74,7 @@ def validation_pool(validation_func, validation_method, datacol, job_id):
             time_elapsed = time.time() - start
 
             # store results
-            scores['n_features'] = len(subset)
+            scores['n_features'] = np.size(X_subset, axis=1)
             scores['ranking_method'] = ranking_method
             scores['cpu_time'] = time_elapsed
             results = results.append(scores)

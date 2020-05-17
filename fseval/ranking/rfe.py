@@ -12,7 +12,8 @@ def RFE_XGBoost(X, y):
         reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5,\
         random_state=0, seed=None, missing=None)
     # Setup FS method
-    fs = RFE(estimator=xgboost_ensemble, n_features_to_select=1, verbose=1)
+    fs = RFE(estimator=xgboost_ensemble, n_features_to_select=1,\
+        step=0.1, verbose=1)
 
     # Run Feature Selection
     fs.fit(X, y)

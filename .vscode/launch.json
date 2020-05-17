@@ -39,6 +39,39 @@
                 "test",
                 "0"
             ]
+        },
+        {
+            "name": "FeatBoost 3Class",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.ranking.featboost",
+            "args": [
+                "${workspaceFolder}/data/3Class.csv",
+                "test",
+                "0"
+            ]
+        },
+        {
+            "name": "RFE 3Class",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.ranking.rfe",
+            "args": [
+                "${workspaceFolder}/data/3Class.csv",
+                "test",
+                "0"
+            ]
+        },
+        {
+            "name": "KNN 3Class",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.validation.knn",
+            "args": [
+                "${workspaceFolder}/data/3Class.csv",
+                "test",
+                "0"
+            ]
         }
     ]
 }

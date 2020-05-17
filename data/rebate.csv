@@ -1,4 +1,4 @@
-type,path
+adapter,path
 rebate,./data/rebate/CA_Datasets_Loc_2_Qnt_2_Pop_100000/a_20/s_1600/her_0.4__maf_0.2/a_20s_1600her_0.4__maf_0.2_EDM-2/a_20s_1600her_0.4__maf_0.2_EDM-2_01.txt.gz
 rebate,./data/rebate/CA_Datasets_Loc_2_Qnt_2_Pop_100000/a_20/s_1600/her_0.4__maf_0.2/a_20s_1600her_0.4__maf_0.2_EDM-2/a_20s_1600her_0.4__maf_0.2_EDM-2_02.txt.gz
 rebate,./data/rebate/CA_Datasets_Loc_2_Qnt_2_Pop_100000/a_20/s_1600/her_0.4__maf_0.2/a_20s_1600her_0.4__maf_0.2_EDM-2/a_20s_1600her_0.4__maf_0.2_EDM-2_03.txt.gz

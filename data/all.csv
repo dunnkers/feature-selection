@@ -1,4 +1,4 @@
-type,path
+adapter,path
 fs_asu_edu,./data/fs_asu_edu/colon.mat
 fs_asu_edu,./data/fs_asu_edu/Isolet.mat
 fs_asu_edu,./data/fs_asu_edu/pixraw10P.mat

@@ -1,4 +1,4 @@
-name,full_name,directory,replica_no,replicas,p_predictive,p,n,heritability,edm,p_alternate,p_key
+theme,full_name,path,replica_no,replicas,p_predictive,p,n,heritability,edm,p_alternate,p_key
 11_bit_mutliplexer,11_bit_mutliplexer,./rebate/11_bit_mutliplexer,1,30,11,11,1000,1,None,None,"A_0,A_1,A_2"
 135_bit_mutliplexer,135_bit_mutliplexer,./rebate/135_bit_mutliplexer,1,30,135,135,20000,1,None,None,"A_0,A_1,A_2,A_3,A_4,A_5,A_6"
 20_bit_mutliplexer,20_bit_mutliplexer,./rebate/20_bit_mutliplexer,1,30,20,20,2000,1,None,None,"A_0,A_1,A_2,A_3"

@@ -7,11 +7,12 @@ for k in {1..30}; do
                 for file in `ls $i`; do
                     ((cnt+=1))
                     if [ $cnt -eq $k ]; then
-                        echo $i/$file
+                        # echo $i/$file # file only
+                        echo rebate,$i/$file,$k,30 # also replicas
                     fi;
-                    # break 1; # uncomment to show only 1 file
                 done
             fi;
         fi;
     done
+    # break 1; # uncomment to show only 1 file
 done

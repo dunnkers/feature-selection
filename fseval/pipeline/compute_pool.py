@@ -90,7 +90,7 @@ def run_pool(func, *map_args):
     data_collection = pd.read_csv(data_col_path)
     n_datasets, _ = data_collection.shape
     cpus = multiprocessing.cpu_count()
-    cpus_per_task = 4
+    cpus_per_task = 1
     pool_size = math.ceil(cpus / cpus_per_task)
     tasks = math.ceil(n_datasets / pool_size)
 

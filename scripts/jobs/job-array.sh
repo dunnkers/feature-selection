@@ -21,4 +21,3 @@ pip install --quiet --user skrebate
 python -m fseval.ranking.rfe $data_collection $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID
 python -m fseval.ranking.featboost $data_collection $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID
 python -m fseval.ranking.multisurf $data_collection $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID
-python -m fseval.validation.knn $data_collection $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID

@@ -7,7 +7,7 @@ def execute_MultiSURF(X, y):
     # Setup FS method
     dataset_features = np.size(X, axis=1) # rank all features
     fs = MultiSURF(n_features_to_select=dataset_features, verbose=True,\
-        n_jobs=4)
+        n_jobs=1)
 
     # Run Feature Selection
     fs.fit(X, y)

@@ -1,4 +1,4 @@
-for k in {1..30}; do
+# for k in {1..30}; do ### all datasets ordered by replica_no
     for i in `find . -type d `; do
         if [ -d $i ]; then
             j=`ls -1 $i | wc -l`;
@@ -6,13 +6,19 @@ for k in {1..30}; do
                 cnt=0
                 for file in `ls $i`; do
                     ((cnt+=1))
-                    if [ $cnt -eq $k ]; then
-                        # echo $i/$file # file only
-                        echo rebate,$i/$file,$k,30 # also replicas
+                    ### all datasets, ordered by dataset
+                    if [ $cnt -le 24 ]; then
+                        echo ,,rebate,$i/$file,$cnt,24 # also replicas
                     fi;
+
+                    ### all datasets ordered by replica_no
+                    # if [ $cnt -eq $k ]; then
+                    #     # echo $i/$file # file only
+                    #     echo rebate,$i/$file,$k,30 # also replicas
+                    # fi;
                 done
             fi;
         fi;
     done
     # break 1; # uncomment to show only 1 file
-done
+# done

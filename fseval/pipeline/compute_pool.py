@@ -22,7 +22,7 @@ def save_output(output, outpath):
         output = pd.concat([ pd.read_csv(outpath), output ])
     output.to_csv(outpath, index=False)
 
-def ranking_pool(ranking_func, ranking_method, datacol, job_id):
+def ranking_pool(ranking_func, ranking_method, datacol, batch_id):
     filename = datacol.path
     dataset = load_dataset(datacol)
 
@@ -43,15 +43,15 @@ def ranking_pool(ranking_func, ranking_method, datacol, job_id):
 
     # Save to .csv
     outpath = '{}.csv'.format(\
-        os.path.join('results', job_id, 'ranking', filename))
+        os.path.join('results', batch_id, 'ranking', filename))
     save_output(output, outpath)
 
-def validation_pool(validation_func, validation_method, datacol, job_id):
+def validation_pool(validation_func, validation_method, datacol, batch_id):
     filename = datacol.path
     dataset = load_dataset(datacol)
 
     # Load feature ranking
-    inpath = '{}.csv'.format(os.path.join('results', job_id, 'ranking', filename))
+    inpath = '{}.csv'.format(os.path.join('results', batch_id, 'ranking', filename))
     data = pd.read_csv(inpath)
 
     # Split by each ranking method
@@ -81,27 +81,34 @@ def validation_pool(validation_func, validation_method, datacol, job_id):
             
     results['validation_method'] = validation_method
     outpath = '{}.csv'.format(\
-        os.path.join('results', job_id, 'validation', filename))
+        os.path.join('results', batch_id, 'validation', filename))
     save_output(results, outpath)
 
 def run_pool(func, *map_args):
     # Determine task division according to arguments
-    data_col_path, job_id, task_id = sys.argv[1], sys.argv[2], sys.argv[3]
+    data_col_path, batch_id, job_id, task_id = sys.argv[1], sys.argv[2], \
+        sys.argv[3], sys.argv[4]
     data_collection = pd.read_csv(data_col_path)
     n_datasets, _ = data_collection.shape
-    cpus = multiprocessing.cpu_count()
+    cpus = multiprocessing.cpu_count() # or whatever is on your HPC, e.g. 24.
     cpus_per_task = 1
     pool_size = math.ceil(cpus / cpus_per_task)
     tasks = math.ceil(n_datasets / pool_size)
 
     # Prepare inputs
     datasets = np.array_split(data_collection, tasks)[int(task_id)]
-    inputs = map(lambda row: [*map_args, row[1], job_id], datasets.iterrows())
+    dataset_descriptions = np.unique(datasets['description'])
+    print('Running pool for datasets:')
+    print(*(enumerate(dataset_descriptions)), sep='\n\t')
+    if np.size(dataset_descriptions) == 1: # only 1 dataset type
+        descr = dataset_descriptions[0]
+        os.system('scontrol update JobID={} name={}'.format(job_id, descr))
+    inputs = map(lambda row: [*map_args, row[1], batch_id], datasets.iterrows())
 
     # Run pool
     print('''Running pool `{}` with pool size {} task {}... \
         [{} workers, {} datasets, {} tasks]'''.format(
-        job_id, pool_size, task_id,\
+        batch_id, pool_size, task_id,\
         cpus, len(datasets), tasks))
     print('\tmap_args = {}'.format(map_args))
     begin = time.time()

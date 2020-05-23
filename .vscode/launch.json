@@ -19,6 +19,7 @@
             "args": [
                 "${workspaceFolder}/data/testing_multiple-adapters.csv",
                 "test",
+                "0",
                 "0"
             ]
         },
@@ -30,6 +31,7 @@
             "args": [
                 "${workspaceFolder}/data/testing_multiple-adapters.csv",
                 "test",
+                "0",
                 "0"
             ]
         },
@@ -42,6 +44,20 @@
                 "${workspaceFolder}/data/testing_multiple-adapters.csv",
                 // "test-`date +%Y%m%d-%H%M`",
                 "test",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "name": "FeatBoost benchmark_24-replicas",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.ranking.featboost",
+            "args": [
+                "${workspaceFolder}/data/benchmark_24-replicas.csv",
+                // "test-`date +%Y%m%d-%H%M`",
+                "test",
+                "0",
                 "0"
             ]
         }

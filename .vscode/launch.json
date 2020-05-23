@@ -5,14 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
             "name": "RFE",
             "type": "python",
             "request": "launch",
             "module": "fseval.ranking.rfe",
             "args": [
-                "${workspaceFolder}/data/rebate-short-2.csv",
-                "test-`date +%Y%m%d-%H%M`",
-                // "test",
+                "${workspaceFolder}/data/testing_multiple-adapters.csv",
+                "test",
                 "0"
             ]
         },
@@ -22,9 +28,8 @@
             "request": "launch",
             "module": "fseval.validation.knn",
             "args": [
-                "${workspaceFolder}/data/rebate-short-2.csv",
-                // "test",
-                "test-20200516-1029",
+                "${workspaceFolder}/data/testing_multiple-adapters.csv",
+                "test",
                 "0"
             ]
         },
@@ -34,52 +39,8 @@
             "request": "launch",
             "module": "fseval.ranking.featboost",
             "args": [
-                "${workspaceFolder}/data/rebate-short-2.csv",
+                "${workspaceFolder}/data/testing_multiple-adapters.csv",
                 // "test-`date +%Y%m%d-%H%M`",
-                "test",
-                "0"
-            ]
-        },
-        {
-            "name": "FeatBoost 3Class",
-            "type": "python",
-            "request": "launch",
-            "module": "fseval.ranking.featboost",
-            "args": [
-                "${workspaceFolder}/data/3Class.csv",
-                "test",
-                "0"
-            ]
-        },
-        {
-            "name": "FeatBoost 6bit",
-            "type": "python",
-            "request": "launch",
-            "module": "fseval.ranking.featboost",
-            "args": [
-                "${workspaceFolder}/data/6-bit.csv",
-                "test",
-                "0"
-            ]
-        },
-        {
-            "name": "RFE 3Class",
-            "type": "python",
-            "request": "launch",
-            "module": "fseval.ranking.rfe",
-            "args": [
-                "${workspaceFolder}/data/3Class.csv",
-                "test",
-                "0"
-            ]
-        },
-        {
-            "name": "KNN 3Class",
-            "type": "python",
-            "request": "launch",
-            "module": "fseval.validation.knn",
-            "args": [
-                "${workspaceFolder}/data/3Class.csv",
                 "test",
                 "0"
             ]

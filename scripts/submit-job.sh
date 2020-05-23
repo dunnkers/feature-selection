@@ -17,7 +17,7 @@ if [[ ! -z $data_collection ]]; then
     job_name=${data_collection##*/}
     echo "Submitting $n_datasets datasets from '${job_name%.csv}'..."
     cpus=24
-    cpus_per_task=4
+    cpus_per_task=1
     pool_size=$(( ( $cpus + ( $cpus_per_task-1 ) ) / $cpus_per_task )) # ceil'ed
     n_tasks=$(( ( $n_datasets + ( $pool_size-1 ) ) / $pool_size ))
     echo "Pool size of $pool_size. Assigning datasets to $n_tasks tasks."

@@ -8,7 +8,7 @@
                     ((cnt+=1))
                     ### all datasets, ordered by dataset
                     if [ $cnt -le 24 ]; then
-                        echo ,,rebate,$i/$file,$cnt,24 # also replicas
+                        echo ,,rebate,$i,$i/$file,$cnt,24 # also replicas
                     fi;
 
                     ### all datasets ordered by replica_no

@@ -55,6 +55,13 @@ Now, your files will be automatically copied over to Peregrine on every git comm
 ./scripts/download-logs.sh
 ```
 
+## Useful commands
+Investigating max memory used on all jobs, according to `logs` directory.
+
+```shell
+grep -rnw './logs/' -e 'Max Mem used'
+```
+
 ## About
 By Jeroen Overschie | University of Groningen
 

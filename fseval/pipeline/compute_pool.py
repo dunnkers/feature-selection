@@ -32,7 +32,8 @@ def ranking_pool(ranking_func, ranking_method, datacol, batch_id):
     start = time.time()
     ranking_all = ranking_func(dataset.data, dataset.target)
     time_elapsed = time.time() - start
-    print('FS {} took {} seconds.'.format(ranking_method, time_elapsed))
+    print('{} feature selection took {} seconds.'.format(\
+        ranking_method, time_elapsed))
 
     # Write results to CSV
     ranking = pd.Series(ranking_all).dropna()
@@ -92,10 +93,10 @@ def get_cpu_count():
 
 def run_pool(func, *map_args):
     # Parse arguments
-    timestamp = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    timestamp = datetime.now().strftime('%Y%m%dT%H%M%S')
     parser = argparse.ArgumentParser(description='Run feature selection pool.')
     parser.add_argument('data_col_path')
-    parser.add_argument('--batch_id', default='test-{}'.format(timestamp))
+    parser.add_argument('--batch_id', default=timestamp)
     parser.add_argument('--job_id', default='0')
     parser.add_argument('--task_id', default='0')
     args = parser.parse_args()

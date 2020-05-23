@@ -1,5 +1,6 @@
 adapter,path
 rebate,./data/rebate/CA_Datasets_Loc_2_Qnt_2_Pop_100000/a_20/s_1600/her_0.4__maf_0.2/a_20s_1600her_0.4__maf_0.2_EDM-2/a_20s_1600her_0.4__maf_0.2_EDM-2_01.txt.gz
 rebate,./data/rebate/20_bit_mutliplexer/20_bit_mutliplexer_2000_01.txt.gz
+rebate,./data/rebate/3Class_Datasets_Loc_2/3Class_Datasets_Loc_2_01.txt.gz
 fs_asu_edu,./data/fs_asu_edu/colon.mat
 fs_asu_edu,./data/fs_asu_edu/Isolet.mat

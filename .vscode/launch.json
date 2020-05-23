@@ -48,12 +48,30 @@
             ]
         },
         {
-            "name": "f-score",
+            "name": "F-score",
             "type": "python",
             "request": "launch",
-            "module": "fseval.ranking.featboost",
+            "module": "fseval.ranking.f_score",
             "args": [
-                "${workspaceFolder}/data/benchmark_24-replicas.csv"
+                "${workspaceFolder}/data/testing_multiple-adapters.csv"
+            ]
+        },
+        {
+            "name": "Chi2",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.ranking.chi2",
+            "args": [
+                "${workspaceFolder}/data/testing_multiple-adapters.csv"
+            ]
+        },
+        {
+            "name": "Mutual Info",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.ranking.mutual_info",
+            "args": [
+                "${workspaceFolder}/data/testing_multiple-adapters.csv"
             ]
         }
     ]

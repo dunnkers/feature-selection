@@ -84,33 +84,38 @@ def validation_pool(validation_func, validation_method, datacol, batch_id):
         os.path.join('results', batch_id, 'validation', filename))
     save_output(results, outpath)
 
+def get_cpu_count():
+    key = 'SLURM_JOB_CPUS_PER_NODE'     # requested CPUs in job
+    local = multiprocessing.cpu_count() # locally available CPU's
+    return int(os.environ[key] if os.environ.get(key) is not None else local)
+
 def run_pool(func, *map_args):
     # Determine task division according to arguments
     data_col_path, batch_id, job_id, task_id = sys.argv[1], sys.argv[2], \
         sys.argv[3], sys.argv[4]
     data_collection = pd.read_csv(data_col_path)
     n_datasets, _ = data_collection.shape
-    cpus = multiprocessing.cpu_count() # or whatever is on your HPC, e.g. 24.
+    cpus = get_cpu_count()
     cpus_per_task = 1
     pool_size = math.ceil(cpus / cpus_per_task)
-    tasks = math.ceil(n_datasets / pool_size)
+    n_tasks = math.ceil(n_datasets / pool_size)
 
     # Prepare inputs
-    datasets = np.array_split(data_collection, tasks)[int(task_id)]
+    datasets = np.array_split(data_collection, n_tasks)[int(task_id)]
     dataset_descriptions = np.unique(datasets['description'])
-    print('Running pool for datasets:')
-    print(*(enumerate(dataset_descriptions)), sep='\n\t')
     if np.size(dataset_descriptions) == 1: # only 1 dataset type
         descr = dataset_descriptions[0]
-        os.system('scontrol update JobID={} name={}'.format(job_id, descr))
+        os.system('scontrol update JobID={} name="{}"'.format(job_id, descr))
     inputs = map(lambda row: [*map_args, row[1], batch_id], datasets.iterrows())
 
     # Run pool
     print('''Running pool `{}` with pool size {} task {}... \
         [{} workers, {} datasets, {} tasks]'''.format(
         batch_id, pool_size, task_id,\
-        cpus, len(datasets), tasks))
+        cpus, len(datasets), n_tasks))
     print('\tmap_args = {}'.format(map_args))
+    print('\tdatasets:')
+    print('\t\t', *(enumerate(dataset_descriptions)), sep='\n\t\t')
     begin = time.time()
     pool = multiprocessing.Pool(processes=pool_size,)
     pool.starmap(func, inputs)

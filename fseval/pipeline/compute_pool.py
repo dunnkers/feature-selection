@@ -102,6 +102,7 @@ def run_pool(func, *map_args):
     args = parser.parse_args()
 
     # Determine task division according to arguments
+    print('... reading data collection from: {}'.format(args.data_col_path))
     data_collection = pd.read_csv(args.data_col_path)
     n_datasets, _ = data_collection.shape
     cpus = get_cpu_count()

@@ -21,4 +21,4 @@ def RFE_XGBoost(X, y):
     return fs.ranking_
 
 if __name__ == '__main__':
-    run_pool(ranking_pool, RFE_XGBoost, 'RFE_XGBoost')
+    run_pool(ranking_pool, RFE_XGBoost, 'RFE w/XGBoost')

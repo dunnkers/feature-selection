@@ -48,6 +48,15 @@
             ]
         },
         {
+            "name": "ExtraTrees",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.ranking.extratrees",
+            "args": [
+                "${workspaceFolder}/data/testing_multiple-adapters.csv"
+            ]
+        },
+        {
             "name": "F-score",
             "type": "python",
             "request": "launch",

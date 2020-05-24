@@ -10,7 +10,6 @@ def execute_stability_selection(X, y):
     fs = StabilitySelection(base_estimator=base_estimator, verbose=1)
     fs.fit(X, y)
     scores = fs.stability_scores_.max(axis=1)
-    # ranking = np.argsort(-scores) # rank all features, don't threshold
 
     # thresholding. threshold is score mean
     ranking = np.where(scores > np.mean(scores), scores, np.nan)

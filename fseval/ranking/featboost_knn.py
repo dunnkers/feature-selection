@@ -27,7 +27,7 @@ def FeatBoost_XGBoost_KNN(X, y):
     fs = FeatBoostClassification(estimator=[xgb, knn],\
             number_of_folds = 10,\
             siso_ranking_size = siso_ranking_size,\
-            max_number_of_features = 100,\
+            max_number_of_features = 20,\
             siso_order=1,\
             epsilon=1e-18,\
             verbose=2)
@@ -44,4 +44,4 @@ def FeatBoost_XGBoost_KNN(X, y):
     return ranking
 
 if __name__ == '__main__':
-    run_pool(ranking_pool, FeatBoost_XGBoost_KNN, 'FeatBoost (XGB+KNN)')
+    run_pool(ranking_pool, FeatBoost_XGBoost_KNN, 'FeatBoost w/1-NN')

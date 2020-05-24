@@ -73,6 +73,24 @@
             "args": [
                 "${workspaceFolder}/data/testing_multiple-adapters.csv"
             ]
+        },
+        {
+            "name": "MultiSURF",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.ranking.multisurf",
+            "args": [
+                "${workspaceFolder}/data/testing_multiple-adapters.csv"
+            ]
+        },
+        {
+            "name": "Stability Selection",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.ranking.stability_selection",
+            "args": [
+                "${workspaceFolder}/data/testing_multiple-adapters.csv"
+            ]
         }
     ]
 }

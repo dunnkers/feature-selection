@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH --time=05:00:00
+#SBATCH --time=20:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=24
-#SBATCH --mem=3000
+#SBATCH --mem=4000
 #SBATCH --output=logs/slurm-%A_%a.out
 #SBATCH --partition=regular
 

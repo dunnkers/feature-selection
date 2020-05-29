@@ -35,11 +35,14 @@ def ranking_pool(ranking_func, ranking_method, datacol, batch_id):
     print('{} feature selection took {} seconds.'.format(\
         ranking_method, time_elapsed))
 
-    # Write results to CSV
+    # Write results to .csv
     ranking = pd.Series(ranking_all).dropna()
+    subsets = ranking.map(lambda rank: ','.join(\
+            ranking[ranking <= rank].index.astype(str)))
     output = pd.DataFrame(data={
         'feature_index': ranking.index,
         'feature_rank': ranking.values,
+        'subset': subsets.values,
         'cpu_time': time_elapsed,
         'ranking_method': ranking_method
     })

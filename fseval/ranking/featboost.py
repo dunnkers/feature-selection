@@ -33,11 +33,11 @@ def FeatBoost_XGBoost(X, y):
     # Run Feature Selection
     fs.fit(X, y)
 
-    # Convert FeatBoost subset to ranking
+    # Convert FeatBoost subset to ranking 
     selected_features = np.unique(fs.selected_subset_) # FeatBoost duplicates bug
     ranking = np.full(np.size(X, axis=1), np.nan) # empty array with NaN's
     for rank, selected_feature in enumerate(selected_features, start=1):
-        ranking[selected_feature] = rank
+        ranking[selected_feature] = rank # -> could use pd.Series.rank maybe.
     
     return ranking
 

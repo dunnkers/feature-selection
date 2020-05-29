@@ -1,36 +1,93 @@
-### Add 'subset' fields to results
 import pandas as pd
-from tqdm import tqdm
-import os
 import numpy as np
-tqdm.pandas()
+import time
+rankdata = pd.read_csv('./analysis/benchmark-20200524/data/rankdata.csv')
+print('computing subset...')
+start = time.time()
+rankdata['subset'] = rankdata['subset'].str.split(pat=',')
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
 
-def save_output(output, outpath):
-    outdir = os.path.dirname(outpath)
-    if not os.path.exists(outdir):
-        os.makedirs(outdir)
-    output.to_csv(outpath, index=False)
+print('computing p_informative...')
+start = time.time()
+rankdata['p_informative'] = rankdata['p_informative'].str.split(pat=',')
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
 
-datacol = pd.read_csv('./analysis/benchmark-20200524/data/benchmark_24-replicas.csv')
-t = tqdm(datacol.iterrows(), total=len(datacol))
-for _, dataset in t:
-    rankpath = os.path.join('./results/11714894/ranking', dataset.path + '.csv')
-    if not os.path.exists(rankpath):
-        continue
-    t.set_description(dataset.description)
-    data = pd.read_csv(rankpath)
-    for ranking_method, groupeddata in data.groupby('ranking_method'):
-        assert(len(np.unique(groupeddata.cpu_time)) == 1) # if not ranking gets messed up
+print('computing total_positives...')
+start = time.time()
+rankdata['total_positives'] = rankdata['p_informative'].str.len()
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
 
-        subsets = groupeddata.apply(lambda x: ','.join(\
-            groupeddata[groupeddata['feature_rank'] <= x['feature_rank']]\
-            ['feature_index'].astype(str)), axis=1)
-        data.loc[subsets.index, 'subset'] = subsets
+print('computing n_positives...')
+start = time.time()
+rankdata['n_positives'] = rankdata['subset'].str.len()
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
 
-    save_output(data, os.path.join('./results/11714894_subsets/ranking',\
-                            dataset.path + '.csv'))
+print('computing tp...')
+start = time.time()
+rankdata['tp'] = rankdata['subset'].combine(rankdata['p_informative'], np.isin)
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
 
-# rankdata = pd.read_csv('./analysis/benchmark-20200524/data/rankdata.csv')
+print('computing tp np.sum...')
+start = time.time()
+rankdata['tp'] = rankdata['tp'].map(np.sum)
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
+
+print('computing fp...')
+start = time.time()
+rankdata['fp'] = rankdata['n_positives'] - rankdata['tp']
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
+
+print('computing fn...')
+start = time.time()
+rankdata['fn'] = rankdata['total_positives'] - rankdata['tp']
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
+
+print('computing recall...')
+start = time.time()
+rankdata['recall'] = rankdata['tp'] / rankdata['total_positives']
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
+
+print('computing precision...')
+start = time.time()
+rankdata['precision'] = rankdata['tp'] / rankdata['n_positives']
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
+
+print('computing f1 score...')
+start = time.time()
+rankdata['f1'] = 2 * ((rankdata['precision'] * rankdata['recall']) / \
+                      (rankdata['precision'] + rankdata['recall']))
+elapsed = time.time() - start
+print('\ttook {} sec'.format(elapsed))
+
+# 💡
+# another idea to compute this, is to treat `subset` as an array full of True,
+# and `p_informative` as an array of the same shape, but partially True values.
+
+# rankdata['subset'] = rankdata['subset']\
+#                         .map(lambda s: s.split(','))
+# rankdata['n_positives'] = rankdata['subset']\
+#                         .map(lambda s: len(s))
+# rankdata['subset'] = rankdata['subset'].str.split(pat=',')
+# rankdata['p_informative'] = rankdata['p_informative']\
+#                         .map(lambda s: [] if pd.isna(s) else s.split(','))
+
+rankdata.to_csv('./data/statdata.csv', index=False)
+print(rankdata.shape)
+
+
+# compute it all
+
+
 # from sklearn.utils import Bunch
 # # 
 # statdata = pd.DataFrame() # data, statistically post-processed

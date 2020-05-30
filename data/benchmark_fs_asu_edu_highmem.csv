@@ -1,0 +1,4 @@
+adapter,directory,path,replica_no,replicas,name,p,n,description,p_informative
+fs_asu_edu,./data/fs_asu_edu,./data/fs_asu_edu/colon.mat,1,1,Colon,2000,62,"Colon [p=2000,n=62]",
+fs_asu_edu,./data/fs_asu_edu,./data/fs_asu_edu/Isolet.mat,1,1,Isolet,617,1560,"Isolet [p=617,n=1560]",
+fs_asu_edu,./data/fs_asu_edu,./data/fs_asu_edu/pixraw10P.mat,1,1,Pixraw10P,10000,100,"Pixraw10P [p=10000,n=100]",

@@ -12,6 +12,13 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "Python: Generic debugger",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/.vscode/generic-debugger.py",
+            "console": "integratedTerminal"
+        },
+        {
             "name": "RFE",
             "type": "python",
             "request": "launch",

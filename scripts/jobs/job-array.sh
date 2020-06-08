@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --time=48:00:00
 #SBATCH --nodes=1
-#SBATCH --ntasks=6
+#SBATCH --ntasks=1
 #SBATCH --mem=100000
 #SBATCH --output=logs/slurm-%A_%a.out
 #SBATCH --partition=regular

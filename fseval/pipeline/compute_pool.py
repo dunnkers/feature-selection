@@ -108,7 +108,7 @@ def run_pool(func, *map_args):
     print('... reading data collection from: {}'.format(args.data_col_path))
     data_collection = pd.read_csv(args.data_col_path)
     n_datasets, _ = data_collection.shape
-    cpus = get_cpu_count()
+    cpus = get_cpu_count() # controlled by SLURM
     cpus_per_task = 1
     pool_size = math.ceil(cpus / cpus_per_task)
     n_tasks = math.ceil(n_datasets / pool_size)

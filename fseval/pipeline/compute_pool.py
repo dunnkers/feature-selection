@@ -21,6 +21,7 @@ def save_output(output, outpath, append=True):
     if not os.path.exists(outdir):
         os.makedirs(outdir)
     if append and os.path.exists(outpath): # merge with existing results
+        # TODO perhaps results should be immutable.
         output = pd.concat([ pd.read_csv(outpath), output ])
     output.to_csv(outpath, index=False)
 
@@ -63,28 +64,28 @@ def validation_pool(validation_func, validation_method, datacol, batch_id):
 
     # Split by each ranking method
     results = pd.DataFrame()
-    for ranking_method, ranking_data in data.groupby('ranking_method'):
-        print('Validating {}'.format(ranking_method))
+    for key, rankdata in data.groupby([ 'ranking_method', 'feature_rank',\
+                                        'cpu_time' ]):
+        # assert that `rankdata` really does come from the same experiment
+        subset = rankdata['subset'].values[0]
+        assert((subset == rankdata['subset']).all())
 
-        # iterate ranked feature groups. `groupby` sorts by feature rank.
-        for feature_rank, _ in ranking_data.groupby('feature_rank'):
-            print('Validating subset with rank {}'.format(feature_rank))
+        # extract data subset from indices
+        subset_indices = np.array(subset.split(',')).astype(int)
+        X_subset = np.take(dataset.data, subset_indices, axis=1)
 
-            # construct subset- use all features up to this rank.
-            subset = ranking_data[ranking_data['feature_rank'] <= feature_rank]
-            subset_indices = subset['feature_index'].values
-            X_subset = np.take(dataset.data, subset_indices, axis=1)
+        # run validation
+        ranking_method, feature_rank, _ = key
+        print('Validating {} rank {}'.format(ranking_method, feature_rank))
+        start = time.time()
+        scores = validation_func(X_subset, dataset.target)
+        time_elapsed = time.time() - start
 
-            # run validation
-            start = time.time()
-            scores = validation_func(X_subset, dataset.target)
-            time_elapsed = time.time() - start
-
-            # store results
-            scores['n_features'] = np.size(X_subset, axis=1)
-            scores['ranking_method'] = ranking_method
-            scores['cpu_time'] = time_elapsed
-            results = results.append(scores)
+        # store results
+        scores['n_features'] = np.size(X_subset, axis=1)
+        scores['ranking_method'] = ranking_method
+        scores['cpu_time'] = time_elapsed
+        results = results.append(scores)
             
     results['validation_method'] = validation_method
     outpath = '{}.csv'.format(\
@@ -153,7 +154,7 @@ def run_pool(func, *map_args):
     print('\tcpus = {}'.format(cpus))
     print('\tmap_args = {}'.format(map_args))
     print('\tn_datasets = {}'.format(len(datasets)))
-    print('\tunique datasets: ({})'.format(len(descrs)))
+    print('\tunique datasets ({}):'.format(len(descrs)))
     print('\t\t{}'.format('\n\t\t'.join(descrs)))
     begin = time.time()
     pool = multiprocessing.Pool(processes=cpus,)

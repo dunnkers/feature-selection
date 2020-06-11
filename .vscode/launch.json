@@ -125,6 +125,16 @@
             "args": [
                 "${workspaceFolder}/data/testing_multiple-adapters.csv"
             ]
+        },
+        {
+            "name": "Validation",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.validation.knn",
+            "args": [
+                "${workspaceFolder}/data/testing_multiple-adapters.csv",
+                "--batch_id=11714894_subsets"
+            ]
         }
     ]
 }

@@ -16,11 +16,11 @@ def load_dataset(datacol):
     dataset = adapter.load_dataset(datacol.path)
     return dataset
 
-def save_output(output, outpath):
+def save_output(output, outpath, append=True):
     outdir = os.path.dirname(outpath)
     if not os.path.exists(outdir):
         os.makedirs(outdir)
-    if os.path.exists(outpath): # merge with existing results
+    if append and os.path.exists(outpath): # merge with existing results
         output = pd.concat([ pd.read_csv(outpath), output ])
     output.to_csv(outpath, index=False)
 
@@ -57,17 +57,18 @@ def validation_pool(validation_func, validation_method, datacol, batch_id):
     dataset = load_dataset(datacol)
 
     # Load feature ranking
-    inpath = '{}.csv'.format(os.path.join('results', batch_id, 'ranking', filename))
+    inpath = '{}.csv'.format(os.path.join('results', batch_id,
+                                            'ranking', filename))
     data = pd.read_csv(inpath)
 
     # Split by each ranking method
     results = pd.DataFrame()
     for ranking_method, ranking_data in data.groupby('ranking_method'):
-        print('validating {}'.format(ranking_method))
+        print('Validating {}'.format(ranking_method))
 
         # iterate ranked feature groups. `groupby` sorts by feature rank.
         for feature_rank, _ in ranking_data.groupby('feature_rank'):
-            print('validating subset with rank {}'.format(feature_rank))
+            print('Validating subset with rank {}'.format(feature_rank))
 
             # construct subset- use all features up to this rank.
             subset = ranking_data[ranking_data['feature_rank'] <= feature_rank]
@@ -90,6 +91,27 @@ def validation_pool(validation_func, validation_method, datacol, batch_id):
         os.path.join('results', batch_id, 'validation', filename))
     save_output(results, outpath)
 
+def analysis_pool(analysis_func, datacol, batch_id):
+    filename = datacol.path
+    print('Analyzing {}'.format(datacol.get('description', filename)))
+
+    # Load feature ranking
+    inpath = '{}.csv'.format(os.path.join('results', batch_id,
+                                            'ranking', filename))
+    data = pd.read_csv(inpath)
+
+    # Add more specific info to the ranking rows; e.g. replica_no, etc.
+    dataset = datacol.drop(labels=[ # `labels` cause `dataset` is Series
+        'directory', 'path', 'adapter']) # drop some cols to save space
+    rankdata = data.assign(**dataset)
+    # Run analysis function
+    statdata = analysis_func(rankdata)
+
+    outpath = '{}.csv'.format(\
+        os.path.join('results', batch_id, 'stats', filename))
+    save_output(statdata, outpath, append=False)
+
+
 def update_slurm_jobname(descr):
     job_id = os.environ.get('SLURM_JOB_ID', None)
     if not job_id == None:
@@ -100,10 +122,12 @@ def run_pool(func, *map_args):
     timestamp = datetime.now().strftime('%Y%m%dT%H%M%S')
     parser = argparse.ArgumentParser(description='Run feature selection pool.')
     parser.add_argument('data_col_path')
+    parser.add_argument('--batch_id')
     args = parser.parse_args()
 
     # Read SLURM config
-    batch_id =      os.environ.get('SLURM_ARRAY_JOB_ID', timestamp)
+    batch_id =     (args.batch_id or # CLI args have precedence over env vars
+                    os.environ.get('SLURM_ARRAY_JOB_ID', timestamp))
     task_id = int(  os.environ.get('SLURM_ARRAY_TASK_ID', '0'))
     cpus = int(     os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
                                         multiprocessing.cpu_count()))
@@ -125,11 +149,11 @@ def run_pool(func, *map_args):
 
     # Run pool
     print('Running pool batch `{}` task {}/{}...'.format(\
-        batch_id, task_id, n_jobs))
+        batch_id, task_id, n_jobs - 1))
     print('\tcpus = {}'.format(cpus))
     print('\tmap_args = {}'.format(map_args))
     print('\tn_datasets = {}'.format(len(datasets)))
-    print('\tunique datasets:')
+    print('\tunique datasets: ({})'.format(len(descrs)))
     print('\t\t{}'.format('\n\t\t'.join(descrs)))
     begin = time.time()
     pool = multiprocessing.Pool(processes=cpus,)

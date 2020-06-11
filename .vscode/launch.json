@@ -4,7 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
             "name": "Python: Current File",
             "type": "python",
@@ -18,6 +17,17 @@
             "request": "launch",
             "module": "fseval.pipeline.collect_results",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Analysis",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.analysis.roc",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/testing_multiple-adapters.csv",
+                "--batch_id=11714894_subsets"
+            ]
         },
         {
             "name": "Python: Generic debugger",

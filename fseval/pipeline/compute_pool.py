@@ -90,50 +90,51 @@ def validation_pool(validation_func, validation_method, datacol, batch_id):
         os.path.join('results', batch_id, 'validation', filename))
     save_output(results, outpath)
 
-def get_cpu_count():
-    key = 'SLURM_JOB_CPUS_PER_NODE'     # requested CPUs in SLURM job
-    return int(os.environ.get(key, multiprocessing.cpu_count()))
+def update_slurm_jobname(descr):
+    job_id = os.environ.get('SLURM_JOB_ID', None)
+    if not job_id == None:
+        os.system('scontrol update JobID={} name="{}"'.format(job_id, descr))
 
 def run_pool(func, *map_args):
     # Parse arguments
     timestamp = datetime.now().strftime('%Y%m%dT%H%M%S')
     parser = argparse.ArgumentParser(description='Run feature selection pool.')
     parser.add_argument('data_col_path')
-    parser.add_argument('--batch_id', default=timestamp)
-    parser.add_argument('--job_id', default='0')
-    parser.add_argument('--task_id', default='0')
     args = parser.parse_args()
 
-    # Determine task division according to arguments
+    # Read SLURM config
+    batch_id =      os.environ.get('SLURM_ARRAY_JOB_ID', timestamp)
+    task_id = int(  os.environ.get('SLURM_ARRAY_TASK_ID', '0'))
+    cpus = int(     os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
+                                        multiprocessing.cpu_count()))
+    n_jobs = int(   os.environ.get('SLURM_ARRAY_TASK_COUNT', '1'))
+
+    # Read in data collection
     print('... reading data collection from: {}'.format(args.data_col_path))
     data_collection = pd.read_csv(args.data_col_path)
-    n_datasets, _ = data_collection.shape
-    cpus = get_cpu_count() # controlled by SLURM
-    cpus_per_task = 1
-    pool_size = math.ceil(cpus / cpus_per_task)
-    n_tasks = math.ceil(n_datasets / pool_size)
 
     # Prepare inputs
-    datasets = np.array_split(data_collection, n_tasks)[int(args.task_id)]
+    datasets = np.array_split(data_collection, n_jobs)[task_id]
     # set more meaningful job description
     descrs = np.unique(datasets.get('description', datasets.get('path', [])))
     descr = descrs[0] if len(descrs) == 1 else 'task {}/{} w/ {} datasets'\
-        .format(args.task_id, n_tasks, len(descrs))
-    os.system('scontrol update JobID={} name="{}"'.format(args.job_id, descr))
-    inputs = map(lambda row: [*map_args, row[1], args.batch_id], datasets.iterrows())
+        .format(task_id, n_jobs, len(descrs))
+    update_slurm_jobname(descr)
+    # map arguments to inputs
+    inputs = map(lambda row: [*map_args, row[1], batch_id], datasets.iterrows())
 
     # Run pool
-    print('''Running pool `{}` with pool size {} task {}... \
-        [{} workers, {} datasets, {} tasks]'''.format(
-        args.batch_id, pool_size, args.task_id,\
-        cpus, len(datasets), n_tasks))
+    print('Running pool batch `{}` task {}/{}...'.format(\
+        batch_id, task_id, n_jobs))
+    print('\tcpus = {}'.format(cpus))
     print('\tmap_args = {}'.format(map_args))
-    print('\tdatasets:')
-    print('\t\t', *(enumerate(descrs)), sep='\n\t\t')
+    print('\tn_datasets = {}'.format(len(datasets)))
+    print('\tunique datasets:')
+    print('\t\t{}'.format('\n\t\t'.join(descrs)))
     begin = time.time()
-    pool = multiprocessing.Pool(processes=pool_size,)
+    pool = multiprocessing.Pool(processes=cpus,)
     pool.starmap(func, inputs)
     pool.close()
     pool.join()
     elapsedTime = time.time() - begin
-    print('Time elapsed for ' , pool_size, ' workers: ', elapsedTime, ' seconds')
+    print('Time elapsed for ' , cpus, ' workers: ', elapsedTime, ' seconds')

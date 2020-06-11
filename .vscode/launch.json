@@ -19,13 +19,24 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "Analysis",
+            "name": "Analysis - ROC",
             "type": "python",
             "request": "launch",
             "module": "fseval.analysis.roc",
             "console": "integratedTerminal",
             "args": [
                 "${workspaceFolder}/data/testing_multiple-adapters.csv",
+                "--batch_id=11714894_subsets"
+            ]
+        },
+        {
+            "name": "Analysis - Binary subsets",
+            "type": "python",
+            "request": "launch",
+            "module": "fseval.analysis.binary_subsets",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/data/benchmark_24-replicas.csv",
                 "--batch_id=11714894_subsets"
             ]
         },

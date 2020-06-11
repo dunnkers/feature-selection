@@ -2,7 +2,7 @@
 from ..pipeline.compute_pool import run_pool, analysis_pool
 import numpy as np
 
-def add_groundtruth_stats(rankdata):
+def compute_rocdata(rankdata):
     if not 'p_informative' in rankdata.columns: # no ground truth
         return rankdata
 
@@ -33,4 +33,4 @@ def add_groundtruth_stats(rankdata):
     return statdata
 
 if __name__ == '__main__':
-    run_pool(analysis_pool, add_groundtruth_stats)
+    run_pool(analysis_pool, compute_rocdata, 'roc')

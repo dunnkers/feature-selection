@@ -92,13 +92,15 @@ def validation_pool(validation_func, validation_method, datacol, batch_id):
         os.path.join('results', batch_id, 'validation', filename))
     save_output(results, outpath)
 
-def analysis_pool(analysis_func, datacol, batch_id):
+def analysis_pool(analysis_func, folder, datacol, batch_id):
     filename = datacol.path
     print('Analyzing {}'.format(datacol.get('description', filename)))
 
     # Load feature ranking
     inpath = '{}.csv'.format(os.path.join('results', batch_id,
                                             'ranking', filename))
+    if not os.path.exists(inpath):
+        return
     data = pd.read_csv(inpath)
 
     # Add more specific info to the ranking rows; e.g. replica_no, etc.
@@ -109,7 +111,7 @@ def analysis_pool(analysis_func, datacol, batch_id):
     statdata = analysis_func(rankdata)
 
     outpath = '{}.csv'.format(\
-        os.path.join('results', batch_id, 'stats', filename))
+        os.path.join('results', batch_id, folder, filename))
     save_output(statdata, outpath, append=False)
 
 

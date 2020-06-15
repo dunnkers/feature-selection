@@ -126,13 +126,15 @@ def run_pool(func, *map_args):
     parser = argparse.ArgumentParser(description='Run feature selection pool.')
     parser.add_argument('data_col_path')
     parser.add_argument('--batch_id')
+    parser.add_argument('--cpus')
     args = parser.parse_args()
 
     # Read SLURM config
     batch_id =     (args.batch_id or # CLI args have precedence over env vars
                     os.environ.get('SLURM_ARRAY_JOB_ID', timestamp))
     task_id = int(  os.environ.get('SLURM_ARRAY_TASK_ID', '0'))
-    cpus = int(     os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
+    cpus = int(     args.cpus or 
+                    os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
                                         multiprocessing.cpu_count()))
     n_jobs = int(   os.environ.get('SLURM_ARRAY_TASK_COUNT', '1'))
 

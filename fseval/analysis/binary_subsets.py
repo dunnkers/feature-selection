@@ -16,18 +16,22 @@ def compute_binary_subsets(rankdata):
 
     rows = []
     for _, data in rankdata.groupby([ 'ranking_method', 'cpu_time' ]):
-        # select only results with k <= 10 features selected
-        relevant_rows   = data[data['n_positives'] <= 10]
-        last_ranked_idx = relevant_rows['feature_rank'].argmax()
-        last_ranked_row = relevant_rows.iloc[last_ranked_idx].copy()
+        for k in range(1, 11): # k=1, k=2, ..., k=10
+            # select only results with n_features_selected <= k
+            relevant_rows   = data[data['n_positives'] <= k]
+            if relevant_rows.empty:
+                continue
+            last_ranked_idx = relevant_rows['feature_rank'].argmax()
+            last_ranked_row = relevant_rows.iloc[last_ranked_idx].copy()
 
-        # compute binary subset
-        binary_subset_int   = get_binary_subset(last_ranked_row)
-        binary_subset       = ','.join(binary_subset_int.astype(str))
+            # compute binary subset
+            binary_subset_int   = get_binary_subset(last_ranked_row)
+            binary_subset       = ','.join(binary_subset_int.astype(str))
 
-        # store
-        last_ranked_row['binary_subset'] = binary_subset
-        rows.append(last_ranked_row)
+            # store
+            last_ranked_row['binary_subset'] = binary_subset
+            last_ranked_row['max_features'] = k
+            rows.append(last_ranked_row)
 
     bindata = pd.concat(rows, axis=1).transpose()
     bindata = bindata.drop(columns=[ # storage space reduction

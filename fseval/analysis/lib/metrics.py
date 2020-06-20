@@ -1,3 +1,7 @@
+#
+# Jeroen Overschie 2020
+#
+
 import numpy as np
 import pandas as pd
 from scipy import interpolate

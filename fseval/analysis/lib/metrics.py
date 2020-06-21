@@ -54,3 +54,41 @@ def compute_interpolated_metrics(replica):
     precision_, recall_, _ = sample_interp_pr(precision, recall)
     return pd.DataFrame({ 'fpr': fpr, 'tpr': tpr, 'auc': auc,
                           'precision': precision_, 'recall': recall_, 'AP': AP })
+
+
+"""
+Function to add metrics to legend entries. `g` should be a Seaborn object.
+
+Note theres both `hue_name` and `hue_var`, such that the legend
+can be replaced by a different hue variable, e.g. an  abbreviated name 
+of the original.
+"""
+def add_metric_to_legend(g, metric_name, hue_name, hue_var=None):
+    hue_var = hue_var if hue_var else g._hue_var
+    assert hue_var, 'no hue var'
+    assert (hue_name and hue_var and hue_name != hue_var),\
+        'hue_name and hue_var cannot be the same'
+
+    # contruct grid with same shape as axes, store data.
+    facet_data_ = np.empty(g.axes.shape, dtype=object)
+    facet_data  = np.atleast_2d(facet_data_) # when only 1 row
+    for coords, data in g.facet_data():
+        i, j, _ = coords
+        facet_data[i, j] = pd.concat([ # merge
+            facet_data[i, j], data])
+
+    # loop axes & data, attach legend.
+    for ax, axdata in zip(g.axes.ravel(), facet_data.ravel()):
+        agg_dict = {}
+        agg_dict[metric_name] = 'mean'
+        
+        # groupby. sort lexicographically on hue_var, not hue_name
+        metrics = axdata\
+            .groupby([hue_var, hue_name])\
+            .agg(agg_dict)\
+            .reset_index()
+        fmt = lambda metric, hue: '{:.2f} {}'.format(metric, hue)
+        labels = metrics[metric_name].combine(metrics[hue_name], fmt)
+        leg = ax.legend(labels, title='{}, {}'.format(
+            metric_name, hue_name))
+        leg._legend_box.align = 'right'

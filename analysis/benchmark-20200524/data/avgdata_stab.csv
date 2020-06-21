@@ -1,0 +1,427 @@
+description,ranking_method,stability
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Easy]",ExtraTrees,0.6033562166285278
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Easy]",FeatBoost,0.4486552072800809
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Easy]",FeatBoost Deep,0.44199023482910976
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Easy]",FeatBoost w/1-NN,0.67171470444553
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Easy]",MultiSURF,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Easy]",RFE w/XGBoost,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Hard]",ExtraTrees,0.1609458428680396
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Hard]",FeatBoost,0.394972166772157
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Hard]",FeatBoost Deep,0.3874989716382196
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Hard]",FeatBoost w/1-NN,0.2869169060116865
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Hard]",MultiSURF,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.05,edm=Hard]",RFE w/XGBoost,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Easy]",ExtraTrees,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Easy]",FeatBoost,0.5063801432617026
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Easy]",FeatBoost Deep,0.45946057228500203
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Easy]",FeatBoost w/1-NN,0.9186716367333108
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Easy]",MultiSURF,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Easy]",RFE w/XGBoost,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Hard]",ExtraTrees,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Hard]",FeatBoost,0.4317506954646329
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Hard]",FeatBoost Deep,0.41212492345376606
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Hard]",FeatBoost w/1-NN,0.4277840229176489
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Hard]",MultiSURF,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.1,edm=Hard]",RFE w/XGBoost,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Easy]",ExtraTrees,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Easy]",FeatBoost,0.5530219234805297
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Easy]",FeatBoost Deep,0.4759791741886414
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Easy]",FeatBoost w/1-NN,0.7099680788037951
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Easy]",MultiSURF,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Easy]",RFE w/XGBoost,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Hard]",ExtraTrees,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Hard]",FeatBoost,0.7031825427362173
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Hard]",FeatBoost Deep,0.6663549445181101
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Hard]",FeatBoost w/1-NN,0.7586033479416625
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Hard]",MultiSURF,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.2,edm=Hard]",RFE w/XGBoost,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Easy]",ExtraTrees,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Easy]",FeatBoost,0.7099680788037951
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Easy]",FeatBoost Deep,0.6636750645544002
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Easy]",FeatBoost w/1-NN,0.3942424905448067
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Easy]",MultiSURF,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Easy]",RFE w/XGBoost,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Hard]",ExtraTrees,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Hard]",FeatBoost,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Hard]",FeatBoost Deep,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Hard]",FeatBoost w/1-NN,0.35900621118012427
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Hard]",MultiSURF,1.0
+"1 Main Effect [p=20,n=1600,p_=1,h=0.4,edm=Hard]",RFE w/XGBoost,1.0
+"11_bit_mutliplexer [p=11,n=1000,p_=11,h=1]",ExtraTrees,1.0
+"11_bit_mutliplexer [p=11,n=1000,p_=11,h=1]",FeatBoost,0.2706521739130433
+"11_bit_mutliplexer [p=11,n=1000,p_=11,h=1]",FeatBoost Deep,0.03152173913043488
+"11_bit_mutliplexer [p=11,n=1000,p_=11,h=1]",FeatBoost w/1-NN,0.014499094103828767
+"11_bit_mutliplexer [p=11,n=1000,p_=11,h=1]",MultiSURF,1.0
+"11_bit_mutliplexer [p=11,n=1000,p_=11,h=1]",RFE w/XGBoost,0.2600241545893719
+"135_bit_mutliplexer [p=135,n=20000,p_=135,h=1]",ExtraTrees,0.02453949551941592
+"135_bit_mutliplexer [p=135,n=20000,p_=135,h=1]",FeatBoost,0.007138221933809197
+"135_bit_mutliplexer [p=135,n=20000,p_=135,h=1]",FeatBoost Deep,0.04303339756558355
+"135_bit_mutliplexer [p=135,n=20000,p_=135,h=1]",FeatBoost w/1-NN,0.007332550413742589
+"135_bit_mutliplexer [p=135,n=20000,p_=135,h=1]",MultiSURF,0.8291318905279503
+"135_bit_mutliplexer [p=135,n=20000,p_=135,h=1]",RFE w/XGBoost,0.15526849037487334
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=50]",ExtraTrees,1.0
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=50]",FeatBoost,0.536231884057971
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=50]",FeatBoost Deep,0.569417270429778
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=50]",FeatBoost w/1-NN,0.5371149715526241
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=50]",MultiSURF,1.0
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=50]",RFE w/XGBoost,1.0
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=75]",ExtraTrees,1.0
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=75]",FeatBoost,0.6623818957256554
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=75]",FeatBoost Deep,0.8748043818466353
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=75]",FeatBoost w/1-NN,0.20709441836202402
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=75]",MultiSURF,1.0
+"2 Additive Main Effects [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=75]",RFE w/XGBoost,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Easy]",ExtraTrees,0.0338164251207731
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Easy]",FeatBoost,0.1303997745480896
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Easy]",FeatBoost Deep,0.11401348074315953
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Easy]",FeatBoost w/1-NN,0.15756339501123462
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Easy]",RFE w/XGBoost,0.2773752012882449
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Hard]",ExtraTrees,0.020606884057971175
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Hard]",FeatBoost,0.16937053861129137
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Hard]",FeatBoost Deep,0.09977276170277227
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Hard]",FeatBoost w/1-NN,0.2312234580384228
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Hard]",MultiSURF,0.18300653594771232
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.05,edm=Hard]",RFE w/XGBoost,0.6195652173913044
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Easy]",ExtraTrees,0.2448512585812357
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Easy]",FeatBoost,0.1105427678317703
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Easy]",FeatBoost Deep,0.269205810412819
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Easy]",FeatBoost w/1-NN,0.07058616440767462
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Easy]",RFE w/XGBoost,0.7765700483091788
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Hard]",ExtraTrees,0.015766841853798286
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Hard]",FeatBoost,0.24275247333489702
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Hard]",FeatBoost Deep,0.22950011625203437
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Hard]",FeatBoost w/1-NN,0.16162135321840188
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Hard]",MultiSURF,0.9537037037037037
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.1,edm=Hard]",RFE w/XGBoost,0.9537037037037037
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Easy]",ExtraTrees,0.9537037037037037
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Easy]",FeatBoost,0.23732072906212587
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Easy]",FeatBoost Deep,0.4901391003340028
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Easy]",FeatBoost w/1-NN,0.13244766505636063
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Easy]",RFE w/XGBoost,0.9074074074074074
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Hard]",ExtraTrees,0.7061191626409018
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Hard]",FeatBoost,0.34158033917160174
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Hard]",FeatBoost Deep,0.34106423841172284
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Hard]",FeatBoost w/1-NN,0.27848208967923094
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Hard]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.2,edm=Hard]",RFE w/XGBoost,0.9415204678362574
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Easy]",ExtraTrees,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost,0.24294105088599938
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost Deep,0.3206366548307802
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost w/1-NN,0.10355731225296427
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Easy]",RFE w/XGBoost,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Hard]",ExtraTrees,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Hard]",FeatBoost,0.2073029224566061
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Hard]",FeatBoost Deep,0.35103765999847275
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Hard]",FeatBoost w/1-NN,0.40414485203801637
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Hard]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=1600,p_=2,h=0.4,edm=Hard]",RFE w/XGBoost,1.0
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Easy]",ExtraTrees,0.05797101449275377
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Easy]",FeatBoost,0.023646071700991755
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Easy]",FeatBoost Deep,0.012204424103737566
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Easy]",FeatBoost w/1-NN,0.016018306636155444
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Easy]",MultiSURF,0.13647342995169076
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Easy]",RFE w/XGBoost,0.034782608695652195
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Hard]",ExtraTrees,0.0274599542334093
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Hard]",FeatBoost,0.031273836765827734
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Hard]",FeatBoost Deep,0.023646071700991644
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Hard]",FeatBoost w/1-NN,0.004576659038901476
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Hard]",MultiSURF,0.035507246376811685
+"2-way Epistasis [p=20,n=200,p_=2,h=0.05,edm=Hard]",RFE w/XGBoost,0.016018306636155555
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Easy]",ExtraTrees,0.040987318840580156
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Easy]",FeatBoost,0.049958193979933396
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Easy]",FeatBoost Deep,0.023870417732310245
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Easy]",FeatBoost w/1-NN,0.07004830917874405
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Easy]",MultiSURF,0.5169082125603865
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Easy]",RFE w/XGBoost,0.14164941338854387
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Hard]",ExtraTrees,0.019607843137255054
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Hard]",FeatBoost,0.008390541571319576
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Hard]",FeatBoost Deep,0.03890160183066382
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Hard]",FeatBoost w/1-NN,0.004576659038901809
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Hard]",MultiSURF,0.06236275801493196
+"2-way Epistasis [p=20,n=200,p_=2,h=0.1,edm=Hard]",RFE w/XGBoost,0.026419804451841333
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Easy]",ExtraTrees,0.2341574310883774
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Easy]",FeatBoost,0.037568594343605155
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Easy]",FeatBoost Deep,0.19950659646355118
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Easy]",FeatBoost w/1-NN,0.12688205660203078
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Easy]",MultiSURF,0.8671497584541065
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Easy]",RFE w/XGBoost,0.12640901771336566
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Hard]",ExtraTrees,0.22101449275362306
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Hard]",FeatBoost,0.18313570487483533
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Hard]",FeatBoost Deep,0.12304196333888806
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Hard]",FeatBoost w/1-NN,0.068149646107179
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Hard]",MultiSURF,0.7805958132045089
+"2-way Epistasis [p=20,n=200,p_=2,h=0.2,edm=Hard]",RFE w/XGBoost,0.2491948470209342
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Easy]",ExtraTrees,0.7363123993558777
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Easy]",FeatBoost,0.0755417167168847
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Easy]",FeatBoost Deep,0.11381088032832998
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Easy]",FeatBoost w/1-NN,0.013429698582478333
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Easy]",RFE w/XGBoost,0.4424315619967796
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Hard]",ExtraTrees,0.6678743961352658
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Hard]",FeatBoost,0.28104575163398704
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Hard]",FeatBoost Deep,0.20610825384597942
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Hard]",FeatBoost w/1-NN,0.15816261437730605
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Hard]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=200,p_=2,h=0.4,edm=Hard]",RFE w/XGBoost,0.5148953301127215
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Easy]",ExtraTrees,0.029553850525717684
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Easy]",FeatBoost,0.023646071700991755
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Easy]",FeatBoost Deep,0.004576659038901476
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Easy]",FeatBoost w/1-NN,0.0007627765064839309
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Easy]",MultiSURF,0.38808373590982287
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Easy]",RFE w/XGBoost,0.041867954911433136
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Hard]",ExtraTrees,0.01376811594202898
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Hard]",FeatBoost,0.019318261735127074
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Hard]",FeatBoost Deep,-0.00731812311665947
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Hard]",FeatBoost w/1-NN,-0.010678871090770592
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Hard]",MultiSURF,0.030100334448160515
+"2-way Epistasis [p=20,n=400,p_=2,h=0.05,edm=Hard]",RFE w/XGBoost,0.023248792270531227
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Easy]",ExtraTrees,0.050724637681159535
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Easy]",FeatBoost,0.082473151913252
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Easy]",FeatBoost Deep,0.1263182109864034
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Easy]",FeatBoost w/1-NN,0.1226008617312968
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Easy]",MultiSURF,0.8188405797101449
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Easy]",RFE w/XGBoost,0.13263065436978483
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Hard]",ExtraTrees,0.0028985507246376274
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Hard]",FeatBoost,0.04742464448526895
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Hard]",FeatBoost Deep,0.05929265695448249
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Hard]",FeatBoost w/1-NN,0.05138339920948609
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Hard]",MultiSURF,0.25724637681159446
+"2-way Epistasis [p=20,n=400,p_=2,h=0.1,edm=Hard]",RFE w/XGBoost,0.39613526570048324
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Easy]",ExtraTrees,0.5571658615136876
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Easy]",FeatBoost,0.12060245944166703
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Easy]",FeatBoost Deep,0.2771926321569411
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Easy]",FeatBoost w/1-NN,0.2658835288864002
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Easy]",RFE w/XGBoost,0.47866344605475053
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Hard]",ExtraTrees,0.6195652173913044
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Hard]",FeatBoost,0.19580414345325714
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Hard]",FeatBoost Deep,0.21456939799331132
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Hard]",FeatBoost w/1-NN,0.06375161097009874
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Hard]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=400,p_=2,h=0.2,edm=Hard]",RFE w/XGBoost,0.48067632850241554
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Easy]",ExtraTrees,0.9537037037037037
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Easy]",FeatBoost,0.11754365404898626
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Easy]",FeatBoost Deep,0.14340251477048938
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Easy]",FeatBoost w/1-NN,0.22539939332659265
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Easy]",RFE w/XGBoost,0.5793075684380034
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Hard]",ExtraTrees,1.0
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Hard]",FeatBoost,0.05946121550648076
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Hard]",FeatBoost Deep,0.2483844657757701
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Hard]",FeatBoost w/1-NN,0.14907703431393915
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Hard]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=400,p_=2,h=0.4,edm=Hard]",RFE w/XGBoost,0.9094202898550726
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Easy]",ExtraTrees,0.03097470872406971
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Easy]",FeatBoost,0.13427086271507438
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Easy]",FeatBoost Deep,0.23873394204408993
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Easy]",FeatBoost w/1-NN,0.16887261123399944
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Easy]",MultiSURF,0.8188405797101449
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Easy]",RFE w/XGBoost,0.09822866344605463
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Hard]",ExtraTrees,0.031273836765827734
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Hard]",FeatBoost,0.09097094645165671
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Hard]",FeatBoost Deep,0.11675003780523063
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Hard]",FeatBoost w/1-NN,0.048894807065383294
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Hard]",MultiSURF,0.07835144927536264
+"2-way Epistasis [p=20,n=800,p_=2,h=0.05,edm=Hard]",RFE w/XGBoost,0.174718196457327
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Easy]",ExtraTrees,0.0808543096872616
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Easy]",FeatBoost,0.14695652173913065
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Easy]",FeatBoost Deep,0.2789213617063542
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Easy]",FeatBoost w/1-NN,0.045810428119273494
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Easy]",RFE w/XGBoost,0.08902691511387151
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Hard]",ExtraTrees,0.028019323671497287
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Hard]",FeatBoost,0.23340830441237093
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Hard]",FeatBoost Deep,0.24926861241520426
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Hard]",FeatBoost w/1-NN,0.11359439367394308
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Hard]",MultiSURF,0.6980676328502415
+"2-way Epistasis [p=20,n=800,p_=2,h=0.1,edm=Hard]",RFE w/XGBoost,0.5471014492753624
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Easy]",ExtraTrees,0.6618357487922706
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Easy]",FeatBoost,0.27863335607047324
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Easy]",FeatBoost Deep,0.5098039215686275
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Easy]",FeatBoost w/1-NN,0.2143896800120232
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Easy]",RFE w/XGBoost,0.7785829307568437
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Hard]",ExtraTrees,0.8631239935587761
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Hard]",FeatBoost,0.2255631220534311
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Hard]",FeatBoost Deep,0.36172784784623446
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Hard]",FeatBoost w/1-NN,0.4000935751474663
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Hard]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=800,p_=2,h=0.2,edm=Hard]",RFE w/XGBoost,0.9537037037037037
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Easy]",ExtraTrees,1.0
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Easy]",FeatBoost,0.3171267408775519
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Easy]",FeatBoost Deep,0.25474840582044
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Easy]",FeatBoost w/1-NN,0.28542673107890515
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Easy]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Easy]",RFE w/XGBoost,1.0
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Hard]",ExtraTrees,1.0
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Hard]",FeatBoost,0.20739281926980768
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Hard]",FeatBoost Deep,0.3355349738037893
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Hard]",FeatBoost w/1-NN,0.08152144990779586
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Hard]",MultiSURF,1.0
+"2-way Epistasis [p=20,n=800,p_=2,h=0.4,edm=Hard]",RFE w/XGBoost,1.0
+"20_bit_mutliplexer [p=20,n=2000,p_=20,h=1]",ExtraTrees,1.0
+"20_bit_mutliplexer [p=20,n=2000,p_=20,h=1]",FeatBoost,0.03707327703157415
+"20_bit_mutliplexer [p=20,n=2000,p_=20,h=1]",FeatBoost Deep,0.20813155233888547
+"20_bit_mutliplexer [p=20,n=2000,p_=20,h=1]",FeatBoost w/1-NN,-0.015630332400518476
+"20_bit_mutliplexer [p=20,n=2000,p_=20,h=1]",MultiSURF,1.0
+"20_bit_mutliplexer [p=20,n=2000,p_=20,h=1]",RFE w/XGBoost,0.3400621118012422
+"3 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",ExtraTrees,1.0
+"3 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",FeatBoost,1.0
+"3 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",FeatBoost Deep,1.0
+"3 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",FeatBoost w/1-NN,1.0
+"3 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",MultiSURF,1.0
+"3 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",RFE w/XGBoost,1.0
+"3-way Epistasis (GAMETES) [p=20,n=1600,p_=3,h=0.4,edm=Easy]",ExtraTrees,0.0901771336553947
+"3-way Epistasis (GAMETES) [p=20,n=1600,p_=3,h=0.4,edm=Easy]",FeatBoost,0.027831680632525613
+"3-way Epistasis (GAMETES) [p=20,n=1600,p_=3,h=0.4,edm=Easy]",FeatBoost Deep,0.18726911054276774
+"3-way Epistasis (GAMETES) [p=20,n=1600,p_=3,h=0.4,edm=Easy]",FeatBoost w/1-NN,-0.0036666810718810616
+"3-way Epistasis (GAMETES) [p=20,n=1600,p_=3,h=0.4,edm=Easy]",MultiSURF,1.0
+"3-way Epistasis (GAMETES) [p=20,n=1600,p_=3,h=0.4,edm=Easy]",RFE w/XGBoost,0.0113378684807256
+"37_bit_mutliplexer [p=37,n=5000,p_=37,h=1]",ExtraTrees,0.9807291666666668
+"37_bit_mutliplexer [p=37,n=5000,p_=37,h=1]",FeatBoost,0.009460547504025585
+"37_bit_mutliplexer [p=37,n=5000,p_=37,h=1]",FeatBoost Deep,0.2665618807883364
+"37_bit_mutliplexer [p=37,n=5000,p_=37,h=1]",FeatBoost w/1-NN,0.005736714975845603
+"37_bit_mutliplexer [p=37,n=5000,p_=37,h=1]",MultiSURF,0.9756944444444443
+"37_bit_mutliplexer [p=37,n=5000,p_=37,h=1]",RFE w/XGBoost,0.3648947951273532
+"4 Additive Main Effects [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",ExtraTrees,1.0
+"4 Additive Main Effects [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",FeatBoost,0.6711338932806324
+"4 Additive Main Effects [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",FeatBoost Deep,0.7306238185255198
+"4 Additive Main Effects [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",FeatBoost w/1-NN,0.5548386290030136
+"4 Additive Main Effects [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",MultiSURF,1.0
+"4 Additive Main Effects [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",RFE w/XGBoost,1.0
+"6_bit_mutliplexer [p=6,n=500,p_=6,h=1]",ExtraTrees,1.0
+"6_bit_mutliplexer [p=6,n=500,p_=6,h=1]",FeatBoost,0.07794466403162059
+"6_bit_mutliplexer [p=6,n=500,p_=6,h=1]",FeatBoost Deep,0.07826086956521738
+"6_bit_mutliplexer [p=6,n=500,p_=6,h=1]",FeatBoost w/1-NN,0.3920152585721097
+"6_bit_mutliplexer [p=6,n=500,p_=6,h=1]",MultiSURF,0.4592391304347827
+"6_bit_mutliplexer [p=6,n=500,p_=6,h=1]",RFE w/XGBoost,0.14130434782608692
+"70_bit_mutliplexer [p=70,n=10000,p_=70,h=1]",ExtraTrees,0.36164994425863983
+"70_bit_mutliplexer [p=70,n=10000,p_=70,h=1]",FeatBoost,0.0038857382902751647
+"70_bit_mutliplexer [p=70,n=10000,p_=70,h=1]",FeatBoost Deep,0.2531293812033659
+"70_bit_mutliplexer [p=70,n=10000,p_=70,h=1]",FeatBoost w/1-NN,0.0038857382902753868
+"70_bit_mutliplexer [p=70,n=10000,p_=70,h=1]",MultiSURF,0.9729938271604937
+"70_bit_mutliplexer [p=70,n=10000,p_=70,h=1]",RFE w/XGBoost,0.3695035460992906
+"9 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",ExtraTrees,1.0
+"9 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",FeatBoost,1.0
+"9 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",FeatBoost Deep,1.0
+"9 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",FeatBoost w/1-NN,1.0
+"9 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",MultiSURF,1.0
+"9 Class Balanced Data (2-way Epistasis+ME) [p=20,n=1600,p_=2,h=1,edm=Easy]",RFE w/XGBoost,1.0
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",ExtraTrees,1.0
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",FeatBoost,0.38834095655002177
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",FeatBoost Deep,0.3431599306926703
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",FeatBoost w/1-NN,0.3025288303715442
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",MultiSURF,1.0
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",RFE w/XGBoost,0.9479166666666666
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",ExtraTrees,1.0
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",FeatBoost,0.3832095945174186
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",FeatBoost Deep,0.41837374581939796
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",FeatBoost w/1-NN,0.36555999163061764
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",MultiSURF,1.0
+"Additive Interactions [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",RFE w/XGBoost,0.7924901185770752
+"Colon [p=2000,n=62]",FeatBoost,
+"Colon [p=2000,n=62]",MultiSURF,
+"Colon [p=2000,n=62]",RFE w/XGBoost,
+"Continuous Endpoints (GAMETES) [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,2]",MultiSURF,1.0
+"Continuous Endpoints (GAMETES) [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,5]",MultiSURF,1.0
+"Continuous Endpoints (GAMETES) [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,8]",MultiSURF,1.0
+"Continuous Endpoints (Threshold) [p=20,n=1600,p_=2,h=0.4,edm=Easy]",MultiSURF,1.0
+"Continuous Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",ExtraTrees,1.0
+"Continuous Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost,0.14143314443164545
+"Continuous Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost Deep,0.21880170145995548
+"Continuous Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost w/1-NN,0.29297033726127597
+"Continuous Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",MultiSURF,1.0
+"Continuous Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",RFE w/XGBoost,1.0
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",ExtraTrees,0.40821256038647347
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",FeatBoost,0.3233742103307321
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",FeatBoost Deep,0.46469513334935586
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",FeatBoost w/1-NN,0.2576554283946798
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",MultiSURF,1.0
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=50]",RFE w/XGBoost,0.5810688405797102
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",ExtraTrees,0.9537037037037037
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",FeatBoost,0.2606314498000233
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",FeatBoost Deep,0.2380461621041331
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",FeatBoost w/1-NN,0.2552334943639293
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",MultiSURF,1.0
+"Heterogeneity [p=20,n=1600,p_=4,h=0.4,edm=Easy,p_alt=75]",RFE w/XGBoost,0.5390499194847022
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,6]",ExtraTrees,1.0
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,6]",FeatBoost,0.5753979092692375
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,6]",FeatBoost Deep,0.4735343129828815
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,6]",FeatBoost w/1-NN,0.1403961092230166
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,6]",MultiSURF,1.0
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,6]",RFE w/XGBoost,1.0
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,9]",ExtraTrees,1.0
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,9]",FeatBoost,0.678205906910066
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,9]",FeatBoost Deep,0.6096160414001494
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,9]",FeatBoost w/1-NN,0.023646071700991755
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,9]",MultiSURF,1.0
+"Imbalanced Data [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,9]",RFE w/XGBoost,0.5108695652173914
+"Isolet [p=617,n=1560]",MultiSURF,
+"Isolet [p=617,n=1560]",RFE w/XGBoost,
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,001]",FeatBoost,0.24795895890917108
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,001]",FeatBoost Deep,0.45175983436853
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,001]",MultiSURF,1.0
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,01]",FeatBoost,0.2224223790632367
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,01]",FeatBoost Deep,0.16831204416327528
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,01]",MultiSURF,1.0
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,1]",FeatBoost,0.23060283864956166
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,1]",FeatBoost Deep,0.28509078579204805
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,1]",MultiSURF,1.0
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,5]",FeatBoost,0.3460480893476723
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,5]",FeatBoost Deep,0.2900129705108905
+"Missing Values [p=20,n=1600,p_=2,h=0.4,edm=Easy,p_alt=0,5]",MultiSURF,1.0
+"Mix of Continuous and Discrete Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",ExtraTrees,0.9537037037037037
+"Mix of Continuous and Discrete Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost,0.19011082693947157
+"Mix of Continuous and Discrete Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost Deep,0.25831202046035806
+"Mix of Continuous and Discrete Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost w/1-NN,0.14962722373957338
+"Mix of Continuous and Discrete Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",MultiSURF,1.0
+"Mix of Continuous and Discrete Features [p=20,n=1600,p_=2,h=0.4,edm=Easy]",RFE w/XGBoost,0.7363123993558777
+"Pixraw10P [p=10000,n=100]",FeatBoost,
+"Pixraw10P [p=10000,n=100]",MultiSURF,
+"Pixraw10P [p=10000,n=100]",RFE w/XGBoost,
+"Total # of Features [p=100,n=1600,p_=2,h=0.4,edm=Easy]",ExtraTrees,0.6894409937888198
+"Total # of Features [p=100,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost,0.08069710755398962
+"Total # of Features [p=100,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost Deep,0.32904255064370047
+"Total # of Features [p=100,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost w/1-NN,0.016463959294473866
+"Total # of Features [p=100,n=1600,p_=2,h=0.4,edm=Easy]",MultiSURF,1.0
+"Total # of Features [p=100,n=1600,p_=2,h=0.4,edm=Easy]",RFE w/XGBoost,0.5471014492753623
+"Total # of Features [p=1000,n=1600,p_=2,h=0.4,edm=Easy]",ExtraTrees,0.0026258142200175083
+"Total # of Features [p=1000,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost,0.002793632680790026
+"Total # of Features [p=1000,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost Deep,0.00625262944103544
+"Total # of Features [p=1000,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost w/1-NN,-0.0010010010010008674
+"Total # of Features [p=1000,n=1600,p_=2,h=0.4,edm=Easy]",MultiSURF,1.0
+"Total # of Features [p=1000,n=1600,p_=2,h=0.4,edm=Easy]",RFE w/XGBoost,0.0026258142200172863
+"Total # of Features [p=10000,n=1600,p_=2,h=0.4,edm=Easy]",ExtraTrees,-0.00010001000100001711
+"Total # of Features [p=10000,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost,-0.00010001000100001711
+"Total # of Features [p=10000,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost Deep,-0.00010001000100001711
+"Total # of Features [p=10000,n=1600,p_=2,h=0.4,edm=Easy]",FeatBoost w/1-NN,-0.00010001000100001711
+"Total # of Features [p=10000,n=1600,p_=2,h=0.4,edm=Easy]",MultiSURF,0.005545015722723146
+"Total # of Features [p=10000,n=1600,p_=2,h=0.4,edm=Easy]",RFE w/XGBoost,-0.00010001000100001711
+"XOR Models [p=20,n=1600,p_=2,h=1]",ExtraTrees,1.0
+"XOR Models [p=20,n=1600,p_=2,h=1]",FeatBoost,0.062262029952496745
+"XOR Models [p=20,n=1600,p_=2,h=1]",FeatBoost Deep,0.2796715883060036
+"XOR Models [p=20,n=1600,p_=2,h=1]",FeatBoost w/1-NN,0.24197901049475234
+"XOR Models [p=20,n=1600,p_=2,h=1]",MultiSURF,1.0
+"XOR Models [p=20,n=1600,p_=2,h=1]",RFE w/XGBoost,1.0
+"XOR Models [p=20,n=1600,p_=3,h=1]",ExtraTrees,1.0
+"XOR Models [p=20,n=1600,p_=3,h=1]",FeatBoost,0.06023007680811887
+"XOR Models [p=20,n=1600,p_=3,h=1]",FeatBoost Deep,0.11700534759358283
+"XOR Models [p=20,n=1600,p_=3,h=1]",FeatBoost w/1-NN,0.0228573394653242
+"XOR Models [p=20,n=1600,p_=3,h=1]",MultiSURF,1.0
+"XOR Models [p=20,n=1600,p_=3,h=1]",RFE w/XGBoost,0.2490118577075099
+"XOR Models [p=20,n=1600,p_=4,h=1]",ExtraTrees,0.43671497584541075
+"XOR Models [p=20,n=1600,p_=4,h=1]",FeatBoost,0.008390541571319465
+"XOR Models [p=20,n=1600,p_=4,h=1]",FeatBoost Deep,0.04058299892660955
+"XOR Models [p=20,n=1600,p_=4,h=1]",FeatBoost w/1-NN,0.007536231884058053
+"XOR Models [p=20,n=1600,p_=4,h=1]",MultiSURF,0.25579710144927537
+"XOR Models [p=20,n=1600,p_=4,h=1]",RFE w/XGBoost,0.006132756132756323
+"XOR Models [p=20,n=1600,p_=5,h=1]",ExtraTrees,0.2986542443064182
+"XOR Models [p=20,n=1600,p_=5,h=1]",FeatBoost,0.001242236024844523
+"XOR Models [p=20,n=1600,p_=5,h=1]",FeatBoost Deep,0.031273836765827734
+"XOR Models [p=20,n=1600,p_=5,h=1]",FeatBoost w/1-NN,0.016811594202898798
+"XOR Models [p=20,n=1600,p_=5,h=1]",MultiSURF,0.16521739130434787
+"XOR Models [p=20,n=1600,p_=5,h=1]",RFE w/XGBoost,0.086231884057971

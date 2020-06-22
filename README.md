@@ -1,14 +1,15 @@
-# fseval
-Feature Selection evaluation framework.
+# feature-selection
+Feature Selection evaluation benchmark, using [fseval](https://github.com/dunnkers/fseval).
 
 ## Running
 ```shell
-python -m fseval.ranking.rfe ./data/rebate.csv "big-test-1" 0
+python -m fseval.ranking.rfe ./data/benchmark_24-replicas.csv
 ```
 
 ## Peregrine setup
 (setup specifically for running on the Peregrine HPC environment at the University of Groningen.)
 
+### Setting up SSH
 1. Create an environment variable `PEREGRINE_USERNAME` with your peregrine username login credentials.
 
 ```shell
@@ -28,7 +29,7 @@ to your `~/.gitconfig` file. Do restart your terminal after setting the env vari
 
 2. Upload your public ssh key to Peregrine to avoid password prompts. e.g. see [this link](https://superuser.com/questions/8077/how-do-i-set-up-ssh-so-i-dont-have-to-type-my-password) for a guide.
 
-(optional) 3. Symlink the provided git hook, to automatically transfer this directory upon any git commits. Run:
+3. (optional) Symlink the provided git hook, to automatically transfer this directory upon any git commits. Run:
 ```shell
 cd .git/hooks
 ln -s -f ../../scripts/upload-files.sh ./post-commit
@@ -39,7 +40,9 @@ Now, your files will be automatically copied over to Peregrine on every git comm
 
 4. Done ✨
 
-## Running tests
+### SLURM scripts
+Several scripts are available to easily transfer files between your local machine and the cluster, as well as run jobs.
+
 1. Transfer files
 ```shell
 ./scripts/upload-files.sh
@@ -47,7 +50,7 @@ Now, your files will be automatically copied over to Peregrine on every git comm
 
 2. Run job
 ```shell
-./scripts/submit-job.sh ./fs-methods/rfe.py ./data/3Class_Datasets_Loc_2/3Class_Datasets_Loc_2_01.txt.gz
+./scripts/submit-job.sh
 ```
 
 3. Download logs
@@ -55,14 +58,12 @@ Now, your files will be automatically copied over to Peregrine on every git comm
 ./scripts/download-logs.sh
 ```
 
-## Useful commands
-Investigating max memory used on all jobs, according to `logs` directory.
-
+4. Collect logs into csv format
 ```shell
-grep -rnw './logs/' -e 'Max Mem used'
+./scripts/util/collect-logs.sh ./logs/slurm-2829392_*.out > logdata.csv
 ```
 
 ## About
 By Jeroen Overschie | University of Groningen
 
-MSc Research Internship 2020.
+Research Internship 2020, MSc Data Science and Systems Complexity
